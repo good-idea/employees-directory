@@ -1,0 +1,8 @@
+{
+  "name": "employee-server",
+  "version": "1.0.0",
+  "description": "GraphQL backend",
+  "main": "index.js",
+  "author": "Joseph Thomas",
+  "license": "MIT"
+}

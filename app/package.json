@@ -1,0 +1,8 @@
+{
+  "name": "employee-app",
+  "version": "1.0.0",
+  "description": "Frontend employee directory",
+  "main": "index.js",
+  "author": "Joseph Thomas",
+  "license": "MIT"
+}
