@@ -1,0 +1,16 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"jsx": "react",
+		"rootDir": "src",
+		"paths": {
+			"test-utils/*": ["test-utils/*"],
+			"Components/*": ["components/*"],
+			"Views/*": ["views/*"],
+			"Types/*": ["types/*"],
+			"Utils/*": ["utils/*"],
+			"Providers/*": [".providers/*"]
+		}
+	},
+	"include": ["src"]
+}

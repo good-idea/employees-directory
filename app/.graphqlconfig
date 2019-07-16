@@ -1,0 +1,18 @@
+{
+	"projects": {
+		"app": {
+			"schemaPath": "./src/schema.graphql",
+			"extensions": {
+				"endpoints": {
+					"default": {
+						"url": "https://jemmawynne-api.good-idea.now.sh",
+						"headers": {
+							"X-Shopify-Storefront-Access-Token": "${env:SHOPIFY_STOREFRONT_TOKEN}"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
