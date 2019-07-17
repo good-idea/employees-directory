@@ -1,4 +1,7 @@
-schema: https://jemmawynne-api.now.sh/graphql
+schema:
+  - https://postlight-code-challenge.herokuapp.com/v1/graphql:
+      headers:
+        x-hasura-admin-secret: '${HASURA_SECRET}'
 generates:
   src/types/generated.ts:
     plugins:
