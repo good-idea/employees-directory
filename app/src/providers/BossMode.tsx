@@ -1,9 +1,17 @@
 import * as React from 'react'
 
+/**
+ * BOSS MODE
+ *
+ * enables boss mode when the user types the secret password.
+ * The user must type the password outside of any text input.
+ */
+
 const { useState, useEffect } = React
 
 interface BossModeContextValue {
 	enabled: boolean
+	disable: () => void
 }
 
 const BossModeContext = React.createContext<BossModeContextValue | undefined>(
@@ -41,6 +49,7 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 		const handleKeyUp = (e) => {
 			console.log(e.target.tagName)
 			console.log(tagNameRegex.test(e.target.tagName))
+
 			/* stop watching & reset if the target is a text input */
 			if (tagNameRegex.test(e.target.tagName)) {
 				setPassword('')
@@ -66,11 +75,12 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 		return () => document.removeEventListener('keyup', handleKeyUp)
 	}, [password])
 
+	const disable = () => setEnabled(false)
+
 	const value = {
 		enabled,
+		disable,
 	}
-
-	if (enabled) console.log('BOSS MODE')
 
 	return (
 		<BossModeContext.Provider value={value}>
