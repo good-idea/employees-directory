@@ -2,7 +2,9 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"jsx": "react",
+		"inlineSourceMap": false,
 		"rootDir": "src",
+		"baseUrl": "./src",
 		"paths": {
 			"test-utils/*": ["test-utils/*"],
 			"Components/*": ["components/*"],

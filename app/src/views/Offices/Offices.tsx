@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { RouteViewProps } from 'Types'
 
-interface EmployeesProps extends RouteViewProps {
+interface OfficesProps extends RouteViewProps {
 	/* */
 }
 
-export const Employees = (props: EmployeesProps) => {
+export const Offices = (props: OfficesProps) => {
 	return <div>...</div>
 }
