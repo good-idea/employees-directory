@@ -23,5 +23,8 @@
   "husky": "^3.0.0",
   "prettier": "^1.18.2",
   "pretty-quick": "^1.11.1"
- }
+ },
+  "resolutions": {
+    "graphql": "^14.4.2"
+  }
 }

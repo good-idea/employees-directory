@@ -1,0 +1,34 @@
+#
+# Employee Types
+#
+
+type Employee {
+  id: ID! @id
+  firstName: String!
+  lastName: String!
+  email: String! @unique
+  department: Department
+  office: Office
+}
+
+#
+# Office Types
+#
+
+type Office {
+  id: ID! @id
+  name: String! @unique
+  location: String!
+  employees: [Employee]!
+}
+
+#
+# Department Types
+#
+
+type Department {
+  id: ID! @id
+  name: String! @unique
+  lead: Employee
+  employees: [Employee]!
+}

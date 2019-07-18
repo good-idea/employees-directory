@@ -1,0 +1,10 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"inlineSourceMap": false,
+		"rootDir": "src",
+		"baseUrl": "./src"
+	},
+	"include": ["src"]
+}
