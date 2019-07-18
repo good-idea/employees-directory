@@ -8,12 +8,7 @@ interface ProvidersProps {
 }
 
 const client = createClient({
-	url: 'https://postlight-code-challenge.herokuapp.com/v1/graphql',
-	fetchOptions: {
-		headers: {
-			'x-hasura-admin-secret': 'secret',
-		},
-	},
+	url: 'http://localhost:4000/graphql',
 })
 
 export const Providers = ({ children }: ProvidersProps) => {
