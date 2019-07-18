@@ -22,9 +22,9 @@ export const Employees = (props: EmployeesProps) => {
 
 	/* A tuple of [HeaderText, sortByKey] */
 	const employeeColumns = [
-		{ label: 'Name', key: 'lastName' },
-		{ label: 'Department', key: 'department.name' },
-		{ label: 'Office', key: 'office.name' },
+		{ title: 'Name', sortByKey: 'lastName' },
+		{ title: 'Department', sortByKey: 'department.name' },
+		{ title: 'Office', sortByKey: 'office.name' },
 	]
 
 	return (

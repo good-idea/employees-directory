@@ -3,7 +3,8 @@ import { createGlobalStyle, css } from '@xstyled/styled-components'
 export const GlobalStyles = createGlobalStyle`
 ${() => css`
 	/* Google Fonts */
-	@import url('https://fonts.googleapis.com/css?family=Butcherman|Rubik|Staatliches&display=swap');
+	@import url('https://fonts.googleapis.com/css?family=Butcherman|Rubik:400,400i,500,500i,700,700i|Staatliches&display=swap');
+
 	/* CSS Resets */
 
 	/* http://meyerweb.com/eric/tools/css/reset/ 

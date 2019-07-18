@@ -11,6 +11,46 @@ export const ListHeader = styled.div`
 
 export const ListContents = styled.ul``
 
+interface WithColumnCount {
+	columnCount: number
+}
+export const ListColumnHeaders = styled.div`
+	${({ columnCount }: WithColumnCount) => css`
+		display: grid;
+		grid-template-columns: repeat(${columnCount}, 1fr);
+		grid-gap: 2;
+		text-align: left;
+		padding: 1 3;
+	`}
+`
+
+interface WithActive {
+	active: boolean
+}
+
+export const ColumnHeader = styled.div`
+	${({ active }: WithActive) => css`
+		& > button {
+			background: none;
+			border: none;
+			display: inline-block;
+			text-align: left;
+			font-family: sans;
+			font-weight: 2;
+			font-size: 1;
+			padding: 0;
+			margin: 0;
+			outline: none;
+			cursor: pointer;
+
+			color: ${active ? 'text.0' : 'text.2'};
+			&:hover {
+				color: text.0;
+			}
+		}
+	`}
+`
+
 export const ListItem = styled.li`
 	${({ columns }) => css`
 		display: grid;

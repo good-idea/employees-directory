@@ -17,7 +17,7 @@ const commonHeaderStyles = ({
 	color,
 	family,
 }: TextStyleProps) => css`
-	font-weight: 2;
+	font-weight: 1;
 	font-family: ${family || 'sans'};
 	color: ${color || 'inherit'};
 	text-align: ${align || 'inherit'};
