@@ -38,8 +38,10 @@ export const defaultTheme = {
 	 *  color, background-color, border-color
 	 */
 	colors: {
-		/* Starts light, slightly darker for offset backgrounds (callouts, code blocks, quotes) */
-		body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
+		/* General background color */
+		/* Higher nubmers are visually "closer", i.e. brighter on a light theme */
+		// body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
+		body: ['#BDC1D1', '#C8CBD8', '#D3D5DF', '#DEDFE7', '#E9E9EE', '#F4F4F6'],
 		/* Text colors, starts with "stronger" colors (body text), goes lighter (image captions, less important text) */
 		/* Should offset well on the primary & body colors */
 		text: [

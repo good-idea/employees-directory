@@ -149,7 +149,7 @@ ${() => css`
 
 	body {
 		font-family: sans;
-		background-color: body.0;
+		background-color: body.1;
 	}
 `}
 `

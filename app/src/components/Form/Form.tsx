@@ -28,7 +28,7 @@ export function Form<FormValues>({
 					<StyledForm onSubmit={formProps.handleSubmit}>
 						<Header2 family="display">{label}</Header2>
 						<React.Fragment>{children}</React.Fragment>
-						<Button disabled={true} type="submit">
+						<Button disabled={formProps.isSubmitting} type="submit">
 							{submitLabel || 'Submit'}
 						</Button>
 					</StyledForm>

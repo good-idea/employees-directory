@@ -3,7 +3,8 @@ import { unwindEdges } from '@good-idea/unwind-edges'
 import { RouteViewProps } from 'Types'
 import { useQuery, useMutation } from 'urql'
 import { employeesQuery, EmployeesQueryResponse } from './queries'
-import { NewEmployeeForm } from 'Components/employee'
+import { NewEmployeeForm, EmployeeListItem } from 'Components/employee'
+import { List } from 'Components/List'
 
 interface EmployeesProps extends RouteViewProps {
 	/* */
@@ -19,12 +20,23 @@ export const Employees = (props: EmployeesProps) => {
 			? unwindEdges(response.data.employeesConnection)[0]
 			: []
 
+	/* A tuple of [HeaderText, sortByKey] */
+	const employeeColumns = [
+		{ label: 'Name', key: 'lastName' },
+		{ label: 'Department', key: 'department.name' },
+		{ label: 'Office', key: 'office.name' },
+	]
+
 	return (
 		<div>
 			<NewEmployeeForm />
-			{employees.map((e) => (
-				<p key={e.id}>{e.firstName}</p>
-			))}
+			<List title="Employees" columns={employeeColumns}>
+				{({ sort }) =>
+					sort(employees).map((e) => (
+						<EmployeeListItem key={e.id} employee={e} />
+					))
+				}
+			</List>
 		</div>
 	)
 }
