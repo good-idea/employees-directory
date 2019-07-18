@@ -6,7 +6,7 @@ const server = new ApolloServer({
 	// typeDefs,
 	// resolvers,
 	schema,
-	mocks: true,
+	// mocks: true,
 })
 
 server.listen().then(({ url }) => {

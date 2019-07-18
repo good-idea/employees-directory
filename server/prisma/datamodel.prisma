@@ -7,8 +7,9 @@ type Employee {
   firstName: String!
   lastName: String!
   email: String! @unique
-  department: Department
-  office: Office
+  department: Department @relation(name: "DepartmentEmployees")
+  office: Office @relation(name: "OfficeEmployees")
+  leads: Department @relation(name: "DepartmentLead", link: INLINE)
 }
 
 #
@@ -19,7 +20,7 @@ type Office {
   id: ID! @id
   name: String! @unique
   location: String!
-  employees: [Employee]!
+  employees: [Employee]! @relation(name: "OfficeEmployees")
 }
 
 #
@@ -29,6 +30,6 @@ type Office {
 type Department {
   id: ID! @id
   name: String! @unique
-  lead: Employee
-  employees: [Employee]!
+  lead: Employee @relation(name: "DepartmentLead")
+  employees: [Employee]! @relation(name: "DepartmentEmployees")
 }

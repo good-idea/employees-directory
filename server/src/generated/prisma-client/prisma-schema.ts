@@ -43,13 +43,30 @@ export const typeDefs = /* GraphQL */ `
 	input DepartmentCreateInput {
 		id: ID
 		name: String!
-		lead: EmployeeCreateOneInput
-		employees: EmployeeCreateManyInput
+		lead: EmployeeCreateOneWithoutLeadsInput
+		employees: EmployeeCreateManyWithoutDepartmentInput
 	}
 
-	input DepartmentCreateOneInput {
-		create: DepartmentCreateInput
+	input DepartmentCreateOneWithoutEmployeesInput {
+		create: DepartmentCreateWithoutEmployeesInput
 		connect: DepartmentWhereUniqueInput
+	}
+
+	input DepartmentCreateOneWithoutLeadInput {
+		create: DepartmentCreateWithoutLeadInput
+		connect: DepartmentWhereUniqueInput
+	}
+
+	input DepartmentCreateWithoutEmployeesInput {
+		id: ID
+		name: String!
+		lead: EmployeeCreateOneWithoutLeadsInput
+	}
+
+	input DepartmentCreateWithoutLeadInput {
+		id: ID
+		name: String!
+		employees: EmployeeCreateManyWithoutDepartmentInput
 	}
 
 	type DepartmentEdge {
@@ -87,34 +104,52 @@ export const typeDefs = /* GraphQL */ `
 		NOT: [DepartmentSubscriptionWhereInput!]
 	}
 
-	input DepartmentUpdateDataInput {
-		name: String
-		lead: EmployeeUpdateOneInput
-		employees: EmployeeUpdateManyInput
-	}
-
 	input DepartmentUpdateInput {
 		name: String
-		lead: EmployeeUpdateOneInput
-		employees: EmployeeUpdateManyInput
+		lead: EmployeeUpdateOneWithoutLeadsInput
+		employees: EmployeeUpdateManyWithoutDepartmentInput
 	}
 
 	input DepartmentUpdateManyMutationInput {
 		name: String
 	}
 
-	input DepartmentUpdateOneInput {
-		create: DepartmentCreateInput
-		update: DepartmentUpdateDataInput
-		upsert: DepartmentUpsertNestedInput
+	input DepartmentUpdateOneWithoutEmployeesInput {
+		create: DepartmentCreateWithoutEmployeesInput
+		update: DepartmentUpdateWithoutEmployeesDataInput
+		upsert: DepartmentUpsertWithoutEmployeesInput
 		delete: Boolean
 		disconnect: Boolean
 		connect: DepartmentWhereUniqueInput
 	}
 
-	input DepartmentUpsertNestedInput {
-		update: DepartmentUpdateDataInput!
-		create: DepartmentCreateInput!
+	input DepartmentUpdateOneWithoutLeadInput {
+		create: DepartmentCreateWithoutLeadInput
+		update: DepartmentUpdateWithoutLeadDataInput
+		upsert: DepartmentUpsertWithoutLeadInput
+		delete: Boolean
+		disconnect: Boolean
+		connect: DepartmentWhereUniqueInput
+	}
+
+	input DepartmentUpdateWithoutEmployeesDataInput {
+		name: String
+		lead: EmployeeUpdateOneWithoutLeadsInput
+	}
+
+	input DepartmentUpdateWithoutLeadDataInput {
+		name: String
+		employees: EmployeeUpdateManyWithoutDepartmentInput
+	}
+
+	input DepartmentUpsertWithoutEmployeesInput {
+		update: DepartmentUpdateWithoutEmployeesDataInput!
+		create: DepartmentCreateWithoutEmployeesInput!
+	}
+
+	input DepartmentUpsertWithoutLeadInput {
+		update: DepartmentUpdateWithoutLeadDataInput!
+		create: DepartmentCreateWithoutLeadInput!
 	}
 
 	input DepartmentWhereInput {
@@ -167,6 +202,7 @@ export const typeDefs = /* GraphQL */ `
 		email: String!
 		department: Department
 		office: Office
+		leads: Department
 	}
 
 	type EmployeeConnection {
@@ -180,12 +216,13 @@ export const typeDefs = /* GraphQL */ `
 		firstName: String!
 		lastName: String!
 		email: String!
-		department: DepartmentCreateOneInput
+		department: DepartmentCreateOneWithoutEmployeesInput
 		office: OfficeCreateOneWithoutEmployeesInput
+		leads: DepartmentCreateOneWithoutLeadInput
 	}
 
-	input EmployeeCreateManyInput {
-		create: [EmployeeCreateInput!]
+	input EmployeeCreateManyWithoutDepartmentInput {
+		create: [EmployeeCreateWithoutDepartmentInput!]
 		connect: [EmployeeWhereUniqueInput!]
 	}
 
@@ -194,9 +231,27 @@ export const typeDefs = /* GraphQL */ `
 		connect: [EmployeeWhereUniqueInput!]
 	}
 
-	input EmployeeCreateOneInput {
-		create: EmployeeCreateInput
+	input EmployeeCreateOneWithoutLeadsInput {
+		create: EmployeeCreateWithoutLeadsInput
 		connect: EmployeeWhereUniqueInput
+	}
+
+	input EmployeeCreateWithoutDepartmentInput {
+		id: ID
+		firstName: String!
+		lastName: String!
+		email: String!
+		office: OfficeCreateOneWithoutEmployeesInput
+		leads: DepartmentCreateOneWithoutLeadInput
+	}
+
+	input EmployeeCreateWithoutLeadsInput {
+		id: ID
+		firstName: String!
+		lastName: String!
+		email: String!
+		department: DepartmentCreateOneWithoutEmployeesInput
+		office: OfficeCreateOneWithoutEmployeesInput
 	}
 
 	input EmployeeCreateWithoutOfficeInput {
@@ -204,7 +259,8 @@ export const typeDefs = /* GraphQL */ `
 		firstName: String!
 		lastName: String!
 		email: String!
-		department: DepartmentCreateOneInput
+		department: DepartmentCreateOneWithoutEmployeesInput
+		leads: DepartmentCreateOneWithoutLeadInput
 	}
 
 	type EmployeeEdge {
@@ -310,20 +366,13 @@ export const typeDefs = /* GraphQL */ `
 		NOT: [EmployeeSubscriptionWhereInput!]
 	}
 
-	input EmployeeUpdateDataInput {
-		firstName: String
-		lastName: String
-		email: String
-		department: DepartmentUpdateOneInput
-		office: OfficeUpdateOneWithoutEmployeesInput
-	}
-
 	input EmployeeUpdateInput {
 		firstName: String
 		lastName: String
 		email: String
-		department: DepartmentUpdateOneInput
+		department: DepartmentUpdateOneWithoutEmployeesInput
 		office: OfficeUpdateOneWithoutEmployeesInput
+		leads: DepartmentUpdateOneWithoutLeadInput
 	}
 
 	input EmployeeUpdateManyDataInput {
@@ -332,22 +381,22 @@ export const typeDefs = /* GraphQL */ `
 		email: String
 	}
 
-	input EmployeeUpdateManyInput {
-		create: [EmployeeCreateInput!]
-		update: [EmployeeUpdateWithWhereUniqueNestedInput!]
-		upsert: [EmployeeUpsertWithWhereUniqueNestedInput!]
-		delete: [EmployeeWhereUniqueInput!]
-		connect: [EmployeeWhereUniqueInput!]
-		set: [EmployeeWhereUniqueInput!]
-		disconnect: [EmployeeWhereUniqueInput!]
-		deleteMany: [EmployeeScalarWhereInput!]
-		updateMany: [EmployeeUpdateManyWithWhereNestedInput!]
-	}
-
 	input EmployeeUpdateManyMutationInput {
 		firstName: String
 		lastName: String
 		email: String
+	}
+
+	input EmployeeUpdateManyWithoutDepartmentInput {
+		create: [EmployeeCreateWithoutDepartmentInput!]
+		delete: [EmployeeWhereUniqueInput!]
+		connect: [EmployeeWhereUniqueInput!]
+		set: [EmployeeWhereUniqueInput!]
+		disconnect: [EmployeeWhereUniqueInput!]
+		update: [EmployeeUpdateWithWhereUniqueWithoutDepartmentInput!]
+		upsert: [EmployeeUpsertWithWhereUniqueWithoutDepartmentInput!]
+		deleteMany: [EmployeeScalarWhereInput!]
+		updateMany: [EmployeeUpdateManyWithWhereNestedInput!]
 	}
 
 	input EmployeeUpdateManyWithoutOfficeInput {
@@ -367,25 +416,42 @@ export const typeDefs = /* GraphQL */ `
 		data: EmployeeUpdateManyDataInput!
 	}
 
-	input EmployeeUpdateOneInput {
-		create: EmployeeCreateInput
-		update: EmployeeUpdateDataInput
-		upsert: EmployeeUpsertNestedInput
+	input EmployeeUpdateOneWithoutLeadsInput {
+		create: EmployeeCreateWithoutLeadsInput
+		update: EmployeeUpdateWithoutLeadsDataInput
+		upsert: EmployeeUpsertWithoutLeadsInput
 		delete: Boolean
 		disconnect: Boolean
 		connect: EmployeeWhereUniqueInput
+	}
+
+	input EmployeeUpdateWithoutDepartmentDataInput {
+		firstName: String
+		lastName: String
+		email: String
+		office: OfficeUpdateOneWithoutEmployeesInput
+		leads: DepartmentUpdateOneWithoutLeadInput
+	}
+
+	input EmployeeUpdateWithoutLeadsDataInput {
+		firstName: String
+		lastName: String
+		email: String
+		department: DepartmentUpdateOneWithoutEmployeesInput
+		office: OfficeUpdateOneWithoutEmployeesInput
 	}
 
 	input EmployeeUpdateWithoutOfficeDataInput {
 		firstName: String
 		lastName: String
 		email: String
-		department: DepartmentUpdateOneInput
+		department: DepartmentUpdateOneWithoutEmployeesInput
+		leads: DepartmentUpdateOneWithoutLeadInput
 	}
 
-	input EmployeeUpdateWithWhereUniqueNestedInput {
+	input EmployeeUpdateWithWhereUniqueWithoutDepartmentInput {
 		where: EmployeeWhereUniqueInput!
-		data: EmployeeUpdateDataInput!
+		data: EmployeeUpdateWithoutDepartmentDataInput!
 	}
 
 	input EmployeeUpdateWithWhereUniqueWithoutOfficeInput {
@@ -393,15 +459,15 @@ export const typeDefs = /* GraphQL */ `
 		data: EmployeeUpdateWithoutOfficeDataInput!
 	}
 
-	input EmployeeUpsertNestedInput {
-		update: EmployeeUpdateDataInput!
-		create: EmployeeCreateInput!
+	input EmployeeUpsertWithoutLeadsInput {
+		update: EmployeeUpdateWithoutLeadsDataInput!
+		create: EmployeeCreateWithoutLeadsInput!
 	}
 
-	input EmployeeUpsertWithWhereUniqueNestedInput {
+	input EmployeeUpsertWithWhereUniqueWithoutDepartmentInput {
 		where: EmployeeWhereUniqueInput!
-		update: EmployeeUpdateDataInput!
-		create: EmployeeCreateInput!
+		update: EmployeeUpdateWithoutDepartmentDataInput!
+		create: EmployeeCreateWithoutDepartmentInput!
 	}
 
 	input EmployeeUpsertWithWhereUniqueWithoutOfficeInput {
@@ -469,6 +535,7 @@ export const typeDefs = /* GraphQL */ `
 		email_not_ends_with: String
 		department: DepartmentWhereInput
 		office: OfficeWhereInput
+		leads: DepartmentWhereInput
 		AND: [EmployeeWhereInput!]
 		OR: [EmployeeWhereInput!]
 		NOT: [EmployeeWhereInput!]
