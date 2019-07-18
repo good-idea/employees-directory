@@ -47,9 +47,6 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 		if (enabled) return // don't watch when in boss mode
 
 		const handleKeyUp = (e) => {
-			console.log(e.target.tagName)
-			console.log(tagNameRegex.test(e.target.tagName))
-
 			/* stop watching & reset if the target is a text input */
 			if (tagNameRegex.test(e.target.tagName)) {
 				setPassword('')

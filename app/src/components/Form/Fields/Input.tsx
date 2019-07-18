@@ -5,16 +5,29 @@ import { FieldWrapper, Label } from './styled'
 
 interface InputProps extends FieldProps {
 	placeholder?: string
+	type?: string
+	required?: boolean
 }
 
-export function Input<FormValues>({ label, name, placeholder }: InputProps) {
+export function Input<FormValues>({
+	label,
+	name,
+	placeholder,
+	type,
+	required,
+}: InputProps) {
 	return (
 		<Field
 			name={name}
 			render={({ field, form }: FormikFieldProps<FormValues>) => (
 				<FieldWrapper>
 					<Label>{label}</Label>
-					<input type="text" {...field} placeholder={placeholder} />
+					<input
+						type={type || 'text'}
+						required={required}
+						{...field}
+						placeholder={placeholder}
+					/>
 				</FieldWrapper>
 			)}
 		/>
