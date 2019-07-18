@@ -38,6 +38,8 @@ export const defaultTheme = {
 	 *  color, background-color, border-color
 	 */
 	colors: {
+		/* Starts light, slightly darker for offset backgrounds (callouts, code blocks, quotes) */
+		body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
 		/* Text colors, starts with "stronger" colors (body text), goes lighter (image captions, less important text) */
 		/* Should offset well on the primary & body colors */
 		text: [
@@ -56,10 +58,11 @@ export const defaultTheme = {
 			'rgb(157,211,218)',
 			'rgb(193,234,234)',
 		],
+		/* An "offset" color, with strong contrast to the primary color of the same index 
+    /* 'color: offset.2' should look good on 'background-color: primary.2' */
+		offset: ['#E0E7F6', '#D1BAD5', '#C38DB4', '#B56093', '#A73372', '#990651'],
 		/* Used for errors and warnings. Starts with "stronger" colors */
 		error: ['#F52828', '#F57628', '#f09e32'],
-		/* Starts light, slightly darker for offset backgrounds (callouts, code blocks, quotes) */
-		body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
 	},
 	breakpoints: {
 		xs: 0,

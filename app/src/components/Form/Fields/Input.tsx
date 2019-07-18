@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Field, FieldProps as FormikFieldProps } from 'formik'
 import { FieldProps } from './types'
-import { FieldWrapper, Label } from './styled'
+import { FieldWrapper, Label, StyledInput } from './styled'
 
 interface InputProps extends FieldProps {
 	placeholder?: string
@@ -21,8 +21,8 @@ export function Input<FormValues>({
 			name={name}
 			render={({ field, form }: FormikFieldProps<FormValues>) => (
 				<FieldWrapper>
-					<Label>{label}</Label>
-					<input
+					<Label htmlFor={field.name}>{label}</Label>
+					<StyledInput
 						type={type || 'text'}
 						required={required}
 						{...field}

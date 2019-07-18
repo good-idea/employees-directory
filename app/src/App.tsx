@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Router } from '@reach/router'
 import { Header } from './components/Header'
+import { Main, Column } from './components/LayoutComponents'
 import { Providers } from './providers/Providers'
 import { Home } from './views/Home'
 import { Employees } from './views/Employees'
@@ -11,12 +12,16 @@ export const App = () => {
 	return (
 		<Providers>
 			<Header />
-			<Router>
-				<Home path="/" />
-				<Employees path="/employees" />
-				<Offices path="/offices" />
-				<Departments path="/departments" />
-			</Router>
+			<Main>
+				<Column>
+					<Router>
+						<Home path="/" />
+						<Employees path="/employees" />
+						<Offices path="/offices" />
+						<Departments path="/departments" />
+					</Router>
+				</Column>
+			</Main>
 		</Providers>
 	)
 }

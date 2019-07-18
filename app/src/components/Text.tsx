@@ -32,6 +32,11 @@ const commonHeaderStyles = ({
 	&:last-child {
 		margin-bottom: 0;
 	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
 `
 
 export const Header1 = styled.h2`

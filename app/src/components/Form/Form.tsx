@@ -1,10 +1,14 @@
 import * as React from 'react'
 import { Formik, FormikProps, FormikActions } from 'formik'
 import { FormOnSubmit } from 'Types'
+import { StyledForm } from './styled'
+import { Header2 } from '../Text'
+import { Button } from '../Button'
 
 interface FormProps<FormValues> {
 	/* */
 	label: string
+	submitLabel?: string
 	initialValues?: Partial<FormValues>
 	onSubmit: FormOnSubmit<FormValues>
 	children: React.ReactNode
@@ -13,17 +17,23 @@ interface FormProps<FormValues> {
 export function Form<FormValues>({
 	initialValues,
 	label,
+	submitLabel,
 	onSubmit,
 	children,
 }: FormProps<FormValues>) {
 	return (
 		<Formik initialValues={initialValues} onSubmit={onSubmit}>
-			{(props: FormikProps<FormValues>) => (
-				<form onSubmit={props.handleSubmit}>
-					<React.Fragment>{children}</React.Fragment>
-					<button type="submit">submit</button>
-				</form>
-			)}
+			{(formProps: FormikProps<FormValues>) => {
+				return (
+					<StyledForm onSubmit={formProps.handleSubmit}>
+						<Header2 family="display">{label}</Header2>
+						<React.Fragment>{children}</React.Fragment>
+						<Button disabled={true} type="submit">
+							{submitLabel || 'Submit'}
+						</Button>
+					</StyledForm>
+				)
+			}}
 		</Formik>
 	)
 }
