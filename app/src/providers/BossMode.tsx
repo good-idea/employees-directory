@@ -31,17 +31,24 @@ interface BossModeProps {
 	children: React.ReactNode
 }
 
+/**
+ * KeystrokeWatcher
+ *
+ * Watches the user's keystrokes and turn on boss mode when they type
+ * the password.
+ *
+ * In a standalone component so the provider doesn't re-render with each keystroke.
+ **/
+
 /* matches text input elements */
 const tagNameRegex = /INPUT|TEXTAREA/
 
 /* the secret */
 const SECRET = '/sudo'
 
-export const BossModeProvider = ({ children }: BossModeProps) => {
-	const [enabled, setEnabled] = useState(false)
+const KeystrokeWatcher = ({ enabled, enable }) => {
 	const [password, setPassword] = useState('')
 
-	/* watch the user's keystrokes and turn on boss mode when they type the password */
 	useEffect(() => {
 		// @ts-ignore
 		if (enabled) return // don't watch when in boss mode
@@ -62,7 +69,8 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 
 			/* turn it on if the password matches */
 			if (newPassword === SECRET) {
-				setEnabled(true)
+				console.log('ENTER BOSS MODE')
+				enable()
 			}
 
 			setPassword(newPassword)
@@ -72,15 +80,27 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 		return () => document.removeEventListener('keyup', handleKeyUp)
 	}, [password])
 
+	return null
+}
+
+/**
+ * Provider
+ */
+
+export const BossModeProvider = ({ children }: BossModeProps) => {
+	const [enabled, setEnabled] = useState(false)
 	const disable = () => setEnabled(false)
+	const enable = () => setEnabled(true)
 
 	const value = {
-		enabled,
+		enable,
 		disable,
+		enabled,
 	}
 
 	return (
 		<BossModeContext.Provider value={value}>
+			<KeystrokeWatcher {...value} />
 			{children}
 		</BossModeContext.Provider>
 	)

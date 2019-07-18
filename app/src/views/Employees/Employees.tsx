@@ -14,7 +14,6 @@ export const Employees = (props: EmployeesProps) => {
 		query: employeesQuery,
 	})
 
-	console.log(response.data)
 	const employees =
 		response.data && response.data.employeesConnection
 			? unwindEdges(response.data.employeesConnection)[0]

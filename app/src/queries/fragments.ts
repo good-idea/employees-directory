@@ -11,6 +11,7 @@ export const employeeFragment = /* GraphQL */ `
 		office {
 			id
 			name
+			location
 		}
 	}
 `
@@ -21,7 +22,8 @@ export const departmentFragment = /* GraphQL */ `
 		name
 		lead {
 			id
-			name
+			firstName
+			lastName
 		}
 	}
 `

@@ -18,15 +18,11 @@ export const NewEmployeeForm = (props: NewEmployeeFormProps) => {
 		MutationCreateEmployeeArgs
 	>(createEmployee)
 
-	console.log(createEmployee)
-
 	const handleSubmit: FormOnSubmit<EmployeeCreateInput> = async (
 		data,
 		actions,
 	) => {
-		console.log(data)
 		const result = await mutate({ data })
-		console.log(result)
 	}
 
 	return (

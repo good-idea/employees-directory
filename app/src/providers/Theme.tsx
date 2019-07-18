@@ -1,32 +1,23 @@
 import * as React from 'react'
-import { merge } from 'lodash'
-import { theme, bossTheme } from '../theme'
-
-interface ThemeContextValue {
-	/* */
-}
-
-const ThemeContext = React.createContext<ThemeContextValue | undefined>(
-	undefined,
-)
-
-export const ThemeConsumer = ThemeContext.Consumer
-
-export const useTheme = () => {
-	const ctx = React.useContext(ThemeContext)
-	if (!ctx)
-		throw new Error('useThemeContext must be used within a ThemeProvider')
-	return ctx
-}
+import { ThemeProvider } from '@xstyled/styled-components'
+import { defaultTheme, bossTheme, GlobalStyles } from '../theme'
+import { useBossMode } from './BossMode'
 
 interface ThemeProps {
 	children: React.ReactNode
 }
 
-export const ThemeProvider = ({ children }: ThemeProps) => {
-	const value = {
-		/* */
-	}
+export const Theme = ({ children }: ThemeProps) => {
+	const { enabled } = useBossMode()
 
-	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+	const theme = enabled ? bossTheme : defaultTheme
+
+	return (
+		<ThemeProvider theme={theme}>
+			<React.Fragment>
+				<GlobalStyles />
+				{children}
+			</React.Fragment>
+		</ThemeProvider>
+	)
 }

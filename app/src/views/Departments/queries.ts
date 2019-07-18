@@ -1,7 +1,7 @@
 import { departmentFragment } from 'Queries'
 import { DepartmentConnection } from 'Types/generated'
 
-export const DepartmentsQuery = /* GraphQL */ `
+export const departmentsQuery = /* GraphQL */ `
 	query DepartmentsQuery(
 		$where: DepartmentWhereInput
 		$orderBy: DepartmentOrderByInput

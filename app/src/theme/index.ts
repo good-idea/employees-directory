@@ -1,6 +1,7 @@
+export * from './global'
 import { merge } from 'lodash'
 
-export const theme = {
+export const defaultTheme = {
 	/* Spacing - applies to:
 	 *   margin, margin-top, margin-right, margin-bottom, margin-left, padding,
 	 *   padding-top, padding-right, padding-bottom, padding-left, grid-gap,
@@ -11,12 +12,17 @@ export const theme = {
 	/* Font Sizes, applies to:
 	 *   font-size
 	 */
-	fontSizes: [12, 14, 16, 20, 24, 32],
+	fontSizes: [
+		10, // small text: h5, captioins
+		13, // readable text: p, h4
+		18, // h3
+		22, // h2
+		30, // h1
+	],
 	fontWeights: [200, 400, 600, 800],
 	fonts: {
-		serif: '',
-		sans: '',
-		display: '',
+		sans: "'Rubik', sans-serif",
+		display: "'Staatliches', cursive",
 	},
 
 	/* Applies to:
@@ -55,8 +61,23 @@ export const theme = {
 		/* Starts light, slightly darker for offset backgrounds (callouts, code blocks, quotes) */
 		body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
 	},
+	breakpoints: {
+		xs: 0,
+		sm: 576,
+		md: 768,
+		lg: 992,
+		xl: 1200,
+	},
 }
 
-const bossThemeOverrides = {}
+const bossThemeOverrides = {
+	fonts: {
+		display: "'Butcherman', cursive",
+	},
 
-export const bossTheme = merge(theme, bossThemeOverrides)
+	colors: {
+		body: ['rgb(61, 20, 53)', '#E9EDED', '#D9E1E1', '#CAD6D6'],
+	},
+}
+
+export const bossTheme = merge({}, defaultTheme, bossThemeOverrides)

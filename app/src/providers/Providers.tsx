@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BossModeProvider } from './BossMode'
-import { ThemeProvider } from './Theme'
+import { Theme } from './Theme'
 import { Provider as UrqlProvider, createClient } from 'urql'
 
 interface ProvidersProps {
@@ -15,7 +15,7 @@ export const Providers = ({ children }: ProvidersProps) => {
 	return (
 		<UrqlProvider value={client}>
 			<BossModeProvider>
-				<ThemeProvider>{children}</ThemeProvider>
+				<Theme>{children}</Theme>
 			</BossModeProvider>
 		</UrqlProvider>
 	)
