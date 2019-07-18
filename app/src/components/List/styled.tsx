@@ -51,10 +51,14 @@ export const ColumnHeader = styled.div`
 	`}
 `
 
+interface WithColumnCount {
+	columnCount: number
+}
+
 export const ListItem = styled.li`
-	${({ columns }) => css`
+	${({ columnCount }: WithColumnCount) => css`
 		display: grid;
-		grid-template-columns: repeat(${columns || 4}, 1fr);
+		grid-template-columns: repeat(${columnCount}, 1fr);
 		grid-gap: 2;
 		padding: 3;
 		background-color: body.4;
@@ -65,6 +69,10 @@ export const ListItem = styled.li`
 
 		&:hover {
 			background-color: body.5;
+		}
+
+		& > * + * {
+			margin: 0;
 		}
 
 		& + & {
