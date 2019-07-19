@@ -40,7 +40,6 @@ export const NewEmployeeForm = (props: NewEmployeeFormProps) => {
 	const [departmentsResponse] = useQuery<DepartmentsQueryResponse>({
 		query: departmentsQuery,
 	})
-	console.log(officeResponse.data)
 
 	const offices = officeResponse.data
 		? unwindEdges(officeResponse.data.officesConnection)[0]
@@ -49,37 +48,43 @@ export const NewEmployeeForm = (props: NewEmployeeFormProps) => {
 	const departments = departmentsResponse.data
 		? unwindEdges(departmentsResponse.data.departmentsConnection)[0]
 		: []
-	console.log(offices)
 
+	/* State */
+	const [initialValues, setInitialValues] = React.useState<Partial<FormValues>>(
+		{},
+	)
+
+	/* Handlers */
 	const handleGenerateClick = () => {
 		const generated = generateEmployee(departments, offices)
 		setInitialValues(generated)
 	}
 
-	const [initialValues, setInitialValues] = React.useState<Partial<FormValues>>(
-		generateEmployee(departments, offices),
-	)
-
-	/* Handlers */
 	const handleSubmit: FormOnSubmit<FormValues> = async (values, actions) => {
 		const { departmentId, officeId, ...rest } = values
 		const data = {
-			department: {
-				connect: {
-					id: departmentId,
-				},
-			},
-			office: {
-				connect: {
-					id: officeId,
-				},
-			},
+			/* only include the 'connect' object when the ID exists
+			 * GraphQL will complain if you try to connect to an undefined ID */
+			department: departmentId
+				? {
+						connect: {
+							id: departmentId,
+						},
+				  }
+				: undefined,
+			office: officeId
+				? {
+						connect: {
+							id: officeId,
+						},
+				  }
+				: undefined,
 			...rest,
 		}
+		console.log(data)
 		const result = await mutate({ data })
+		console.log(result)
 	}
-
-	console.log(initialValues)
 
 	return (
 		<Form

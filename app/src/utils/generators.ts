@@ -24,3 +24,15 @@ export const generateEmployee = (
 		officeId: officeId as any,
 	}
 }
+
+export const generateDepartment = (employees: Employee[] = []) => {
+	return {
+		name: faker.commerce.department(),
+		leadId: getFirstId(faker.helpers.shuffle(employees)) as any,
+	}
+}
+
+export const generateOffice = () => ({
+	name: `${faker.company.catchPhraseAdjective()} ${faker.company.catchPhraseNoun()}`,
+	location: `${faker.address.city()}, ${faker.address.country()}`,
+})
