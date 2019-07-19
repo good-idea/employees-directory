@@ -7,7 +7,7 @@ import {
 	DepartmentCreateInput,
 } from 'Types'
 import { createDepartment, CreateDepartmentResponse } from 'Queries'
-import { EmployeeSelector } from 'Components/Employee'
+import { EmployeeSelector } from 'Components/employee'
 
 interface NewDepartmentFormProps {
 	/* */

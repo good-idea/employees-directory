@@ -4,6 +4,7 @@ import { Employee, MutationDeleteEmployeeArgs } from 'Types'
 import { Header4 } from '../Text'
 import { ListItem, FireButton } from '../List'
 import { deleteEmployeeMutation } from 'Queries'
+import { useBossMode } from 'Providers'
 import { Brimstone } from '../Brimstone'
 
 interface EmployeeListItemProps {
@@ -11,9 +12,13 @@ interface EmployeeListItemProps {
 }
 
 export const EmployeeListItem = ({ employee }: EmployeeListItemProps) => {
-	const [isBurning, setIsBurning] = React.useState(false)
-	const [hidden, setHidden] = React.useState(false)
+	const { bossMode } = useBossMode()
 	const { firstName, lastName, department, office } = employee
+
+	/* Firing State */
+	const [isBurning, setIsBurning] = React.useState(false)
+
+	/* Mutation */
 	const [result, fire] = useMutation<Employee, MutationDeleteEmployeeArgs>(
 		deleteEmployeeMutation,
 	)
@@ -26,13 +31,13 @@ export const EmployeeListItem = ({ employee }: EmployeeListItemProps) => {
 	}
 
 	return (
-		<ListItem columnCount={3} isBurning={isBurning} hidden={hidden}>
-			<span>
+		<ListItem columnCount={3} isBurning={isBurning}>
+			<div>
 				<Header4>
 					{lastName}, {firstName}
 					{isBurning ? <Brimstone /> : null}
 				</Header4>
-			</span>
+			</div>
 			<Header4 color={department && department.name ? '' : 'text.3'}>
 				{department ? department.name : 'unassigned'}
 			</Header4>

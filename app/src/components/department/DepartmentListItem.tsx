@@ -1,7 +1,11 @@
 import * as React from 'react'
-import { Department } from 'Types'
+import { useMutation } from 'urql'
+import { Department, MutationDeleteDepartmentArgs } from 'Types'
 import { Header4 } from '../Text'
-import { ListItem } from '../List'
+import { ListItem, FireButton } from '../List'
+import { deleteDepartmentMutation } from 'Queries'
+import { Brimstone } from '../Brimstone'
+import { useBossMode } from 'Providers'
 
 interface DepartmentListItemProps {
 	department: Department
@@ -9,15 +13,34 @@ interface DepartmentListItemProps {
 
 export const DepartmentListItem = ({ department }: DepartmentListItemProps) => {
 	const { lead, name } = department
-	console.log(department)
+
+	/* Burning State */
+	const [isBurning, setIsBurning] = React.useState(false)
+
+	/* Mutation */
+	const [result, burn] = useMutation<Department, MutationDeleteDepartmentArgs>(
+		deleteDepartmentMutation,
+	)
+
+	const handleClick = () => {
+		setIsBurning(true)
+		setTimeout(async () => {
+			burn({ where: { id: department.id } })
+		}, 5000)
+	}
 
 	return (
-		<ListItem columnCount={3}>
-			<Header4>{name}</Header4>
+		<ListItem columnCount={3} isBurning={isBurning}>
+			<div>
+				<Header4>
+					{name}
+					{isBurning ? <Brimstone /> : null}
+				</Header4>
+			</div>
 			<Header4>{lead ? lead.firstName : ''}</Header4>
-			<Header4>
-				<span />
-			</Header4>
+			<FireButton onClick={handleClick} disabled={isBurning}>
+				Liquidate
+			</FireButton>
 		</ListItem>
 	)
 }

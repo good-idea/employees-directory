@@ -119,6 +119,7 @@ export const ListItem = styled.li`
 `
 
 export const FireButton = styled(Button)`
+	font-family: display;
 	display: none;
 	background-color: error.0;
 	position: absolute;

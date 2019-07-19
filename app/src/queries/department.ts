@@ -64,8 +64,8 @@ export interface DepartmentsQueryResponse {
 /* Delete */
 
 export const deleteDepartmentMutation = /* GraphQL */ `
-	mutation DeleteDepartment($id: ID!) {
-		deleteDepartment(where: { id: $id }) {
+	mutation DeleteDepartment($where: DepartmentWhereUniqueInput!) {
+		deleteDepartment(where: $where) {
 			...DepartmentFragment
 		}
 	}

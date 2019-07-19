@@ -64,8 +64,8 @@ export interface OfficesQueryResponse {
 /* Delete */
 
 export const deleteOfficeMutation = /* GraphQL */ `
-	mutation DeleteOfficeMutation($id: ID!) {
-		deleteOffice(where: { id: $id }) {
+	mutation DeleteOfficeMutation($where: OfficeWhereUniqueInput!) {
+		deleteOffice(where: $where) {
 			...OfficeFragment
 		}
 	}
