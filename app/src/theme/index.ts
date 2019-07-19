@@ -40,8 +40,8 @@ export const defaultTheme = {
 	colors: {
 		/* General background color */
 		/* Higher nubmers are visually "closer", i.e. brighter on a light theme */
-		// body: ['#F8F8F8', '#E9EDED', '#D9E1E1', '#CAD6D6'],
 		body: ['#BDC1D1', '#C8CBD8', '#D3D5DF', '#DEDFE7', '#E9E9EE', '#F4F4F6'],
+
 		/* Text colors, starts with "stronger" colors (body text), goes lighter (image captions, less important text) */
 		/* Should offset well on the primary & body colors */
 		text: [
@@ -81,7 +81,10 @@ const bossThemeOverrides = {
 	},
 
 	colors: {
-		body: ['rgb(61, 20, 53)', '#E9EDED', '#D9E1E1', '#CAD6D6'],
+		// body: ['#3d0f61', '#4e2271', '#5f3382', '#704592', '#8157a4', '#9369b5'],
+		body: ['#150030', '#251243', '#382057', '#4c2e6b', '#603d81', '#754d97'],
+		primary: ['#a7024b', '#ae076c', '#b2108f', '#b31ab3', '#b023d9', '#a92dff'],
+		text: ['#faedf2', '#f6dff6', '#f1d0f9', '#edc1fd', '#dfb9ee', '#ceb2d9'],
 	},
 }
 

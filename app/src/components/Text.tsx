@@ -19,7 +19,7 @@ const commonHeaderStyles = ({
 }: TextStyleProps) => css`
 	font-weight: 1;
 	font-family: ${family || 'sans'};
-	color: ${color || 'inherit'};
+	color: ${color || 'text.0'};
 	text-align: ${align || 'inherit'};
 	text-transform: ${transform || 'auto'};
 	margin: 0.3em 0;
