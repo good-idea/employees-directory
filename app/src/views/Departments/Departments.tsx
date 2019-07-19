@@ -1,10 +1,13 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
-import { RouteViewProps } from 'Types'
-import { departmentsQuery, DepartmentsQueryResponse } from 'Queries'
-import { NewDepartmentForm, DepartmentListItem } from 'Components/department'
-import { List } from 'Components/List'
+import { RouteViewProps } from '../../types'
+import { departmentsQuery, DepartmentsQueryResponse } from '../../queries'
+import {
+	NewDepartmentForm,
+	DepartmentListItem,
+} from '../../components/department'
+import { List } from '../../components/List'
 import { useBossMode } from '../../providers/BossMode'
 
 interface DepartmentsProps extends RouteViewProps {

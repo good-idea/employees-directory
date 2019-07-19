@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Form, Input } from '../Form'
 import { useMutation } from 'urql'
-import { FormOnSubmit, MutationCreateOfficeArgs } from 'Types'
-import { createOffice, CreateOfficeResponse } from 'Queries'
+import { FormOnSubmit, MutationCreateOfficeArgs } from '../../types'
+import { createOffice, CreateOfficeResponse } from '../../queries'
 import { Button } from '../Button'
-import { generateOffice } from 'Utils/generators'
+import { generateOffice } from '../../utils/generators'
 
 interface NewOfficeFormProps {
 	/* */

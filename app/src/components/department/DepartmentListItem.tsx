@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useMutation } from 'urql'
-import { Department, MutationDeleteDepartmentArgs } from 'Types'
+import { Department, MutationDeleteDepartmentArgs } from '../../types'
 import { Header4 } from '../Text'
 import { ListItem, FireButton } from '../List'
-import { deleteDepartmentMutation } from 'Queries'
+import { deleteDepartmentMutation } from '../../queries'
 import { Brimstone } from '../Brimstone'
 import { useBossMode } from '../../providers/BossMode'
 

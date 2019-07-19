@@ -2,9 +2,8 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
 import { Selector } from '../Form'
-import { OfficeConnection } from 'Types'
-import { officeFragment } from 'Queries'
-import { officesQuery, OfficesQueryResponse } from 'Queries'
+import { OfficeConnection } from '../../types'
+import { officesQuery, OfficesQueryResponse } from '../../queries'
 
 interface OfficeSelectorProps {
 	name: string

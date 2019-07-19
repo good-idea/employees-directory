@@ -2,9 +2,8 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
 import { Selector } from '../Form'
-import { DepartmentConnection } from 'Types'
-import { departmentFragment } from 'Queries'
-import { departmentsQuery, DepartmentsQueryResponse } from 'Queries'
+import { DepartmentConnection } from '../../types'
+import { departmentsQuery, DepartmentsQueryResponse } from '../../queries'
 
 interface DepartmentSelectorProps {
 	name: string

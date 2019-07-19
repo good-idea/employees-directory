@@ -2,9 +2,8 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
 import { Selector } from '../Form'
-import { EmployeeConnection } from 'Types'
-import { employeeFragment } from 'Queries'
-import { employeesQuery, EmployeesQueryResponse } from 'Queries'
+import { EmployeeConnection } from '../../types'
+import { employeesQuery, EmployeesQueryResponse } from '../../queries'
 
 interface EmployeeSelectorProps {
 	name: string

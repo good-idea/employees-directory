@@ -4,15 +4,7 @@
 		"jsx": "react",
 		"inlineSourceMap": false,
 		"rootDir": "src",
-		"baseUrl": "./src",
-		"paths": {
-			"test-utils/*": ["test-utils/*"],
-			"Components/*": ["components/*"],
-			"Views/*": ["views/*"],
-			"Types/*": ["types/*"],
-			"Utils/*": ["utils/*"],
-			"Queries/*": ["queries/*"]
-		}
+		"baseUrl": "./src"
 	},
 	"include": ["src"]
 }

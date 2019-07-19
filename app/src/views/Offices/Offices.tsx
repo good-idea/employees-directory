@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
-import { RouteViewProps } from 'Types'
-import { NewOfficeForm, OfficeListItem } from 'Components/office'
-import { officesQuery, OfficesQueryResponse } from 'Queries'
-import { List } from 'Components/List'
+import { RouteViewProps } from '../../types'
+import { NewOfficeForm, OfficeListItem } from '../../components/office'
+import { List } from '../../components/List'
+import { officesQuery, OfficesQueryResponse } from '../../queries'
 import { useBossMode } from '../../providers/BossMode'
 
 interface OfficesProps extends RouteViewProps {

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { Form, Input, Selector } from '../Form'
 import { useQuery, useMutation } from 'urql'
-import { FormOnSubmit, MutationCreateEmployeeArgs } from 'Types'
+import { FormOnSubmit, MutationCreateEmployeeArgs } from '../../types'
 import {
 	departmentsQuery,
 	DepartmentsQueryResponse,
@@ -10,11 +10,11 @@ import {
 	OfficesQueryResponse,
 	createEmployee,
 	CreateEmployeeResponse,
-} from 'Queries'
-import { DepartmentSelector } from 'Components/department'
-import { OfficeSelector } from 'Components/office'
-import { generateEmployee } from 'Utils/generators'
-import { Button } from 'Components/Button'
+} from '../../queries'
+import { DepartmentSelector } from '../../components/department'
+import { OfficeSelector } from '../../components/office'
+import { generateEmployee } from '../../utils/generators'
+import { Button } from '../../components/Button'
 
 interface NewEmployeeFormProps {
 	/* */

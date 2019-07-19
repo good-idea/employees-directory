@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
-import { RouteViewProps } from 'Types'
 import { useQuery, useMutation } from 'urql'
-import { employeesQuery, EmployeesQueryResponse } from 'Queries'
-import { NewEmployeeForm, EmployeeListItem } from 'Components/employee'
-import { List } from 'Components/List'
+import { RouteViewProps } from '../../types'
+import { employeesQuery, EmployeesQueryResponse } from '../../queries'
+import { NewEmployeeForm, EmployeeListItem } from '../../components/employee'
+import { List } from '../../components/List'
 import { useBossMode } from '../../providers/BossMode'
 
 interface EmployeesProps extends RouteViewProps {

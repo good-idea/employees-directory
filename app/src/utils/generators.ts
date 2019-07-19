@@ -1,6 +1,6 @@
 import faker from 'faker'
 import { head, prop, pipe } from 'ramda'
-import { Department, Office, Employee } from 'Types'
+import { Department, Office, Employee } from '../types'
 
 const getFirstId = pipe(
 	head,

@@ -6,15 +6,15 @@ import {
 	FormOnSubmit,
 	MutationCreateDepartmentArgs,
 	DepartmentCreateInput,
-} from 'Types'
+} from '../../types'
 import {
 	createDepartment,
 	CreateDepartmentResponse,
 	employeesQuery,
 	EmployeesQueryResponse,
-} from 'Queries'
-import { EmployeeSelector } from 'Components/employee'
-import { generateDepartment } from 'Utils/generators'
+} from '../../queries'
+import { EmployeeSelector } from '../employee'
+import { generateDepartment } from '../../utils/generators'
 import { Button } from '../Button'
 
 interface NewDepartmentFormProps {

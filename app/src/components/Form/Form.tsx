@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Formik, FormikProps, FormikActions } from 'formik'
-import { FormOnSubmit } from 'Types'
+import { FormOnSubmit } from '../../types'
 import { StyledForm } from './styled'
 import { Header2 } from '../Text'
 import { Button } from '../Button'
