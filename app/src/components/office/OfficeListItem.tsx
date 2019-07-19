@@ -5,12 +5,14 @@ import { Header4 } from '../Text'
 import { ListItem, FireButton } from '../List'
 import { deleteOfficeMutation } from 'Queries'
 import { Brimstone } from '../Brimstone'
+import { useBossMode } from '../../providers/BossMode'
 
 interface OfficeListItemProps {
 	office: Office
 }
 
 export const OfficeListItem = ({ office }: OfficeListItemProps) => {
+	const { bossMode } = useBossMode()
 	const { name, location } = office
 
 	/* Burning State */
@@ -29,18 +31,19 @@ export const OfficeListItem = ({ office }: OfficeListItemProps) => {
 	}
 
 	return (
-		<ListItem columnCount={3}>
+		<ListItem columnCount={3} isBurning={isBurning}>
 			<div>
 				<Header4>
 					{name}
-
 					{isBurning ? <Brimstone /> : null}
 				</Header4>
 			</div>
 			<Header4>{location}</Header4>
-			<FireButton onClick={handleClick} disabled={isBurning}>
-				Burn
-			</FireButton>
+			{bossMode ? (
+				<FireButton onClick={handleClick} disabled={isBurning}>
+					Burn
+				</FireButton>
+			) : null}
 		</ListItem>
 	)
 }

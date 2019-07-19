@@ -5,12 +5,14 @@ import { RouteViewProps } from 'Types'
 import { departmentsQuery, DepartmentsQueryResponse } from 'Queries'
 import { NewDepartmentForm, DepartmentListItem } from 'Components/department'
 import { List } from 'Components/List'
+import { useBossMode } from '../../providers/BossMode'
 
 interface DepartmentsProps extends RouteViewProps {
 	/* */
 }
 
 export const Departments = (props: DepartmentsProps) => {
+	const { bossMode } = useBossMode()
 	const [response, refetchdepartments] = useQuery<DepartmentsQueryResponse>({
 		query: departmentsQuery,
 	})
@@ -27,7 +29,7 @@ export const Departments = (props: DepartmentsProps) => {
 
 	return (
 		<div>
-			<NewDepartmentForm />
+			{bossMode ? <NewDepartmentForm /> : null}
 			<List title="Departments" columnCount={3} columns={departmentColumns}>
 				{({ sort }) =>
 					sort(departments).map((d) => (

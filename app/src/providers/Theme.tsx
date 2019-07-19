@@ -8,9 +8,9 @@ interface ThemeProps {
 }
 
 export const Theme = ({ children }: ThemeProps) => {
-	const { enabled } = useBossMode()
+	const { bossMode } = useBossMode()
 
-	const theme = enabled ? bossTheme : defaultTheme
+	const theme = bossMode ? bossTheme : defaultTheme
 
 	return (
 		<ThemeProvider theme={theme}>

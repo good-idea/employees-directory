@@ -5,6 +5,7 @@ import { RouteViewProps } from 'Types'
 import { NewOfficeForm, OfficeListItem } from 'Components/office'
 import { officesQuery, OfficesQueryResponse } from 'Queries'
 import { List } from 'Components/List'
+import { useBossMode } from '../../providers/BossMode'
 
 interface OfficesProps extends RouteViewProps {
 	/* */
@@ -16,6 +17,7 @@ interface CreateOfficeValues {
 }
 
 export const Offices = (props: OfficesProps) => {
+	const { bossMode } = useBossMode()
 	const [response, refetchOffices] = useQuery<OfficesQueryResponse>({
 		query: officesQuery,
 	})
@@ -31,7 +33,7 @@ export const Offices = (props: OfficesProps) => {
 	]
 	return (
 		<div>
-			<NewOfficeForm />
+			{bossMode ? <NewOfficeForm /> : null}
 			<List title="Offices" columnCount={3} columns={officeColumns}>
 				{({ sort }) =>
 					sort(offices).map((o) => <OfficeListItem key={o.id} office={o} />)

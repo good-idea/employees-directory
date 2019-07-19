@@ -5,13 +5,14 @@ import { Header4 } from '../Text'
 import { ListItem, FireButton } from '../List'
 import { deleteDepartmentMutation } from 'Queries'
 import { Brimstone } from '../Brimstone'
-import { useBossMode } from 'Providers'
+import { useBossMode } from '../../providers/BossMode'
 
 interface DepartmentListItemProps {
 	department: Department
 }
 
 export const DepartmentListItem = ({ department }: DepartmentListItemProps) => {
+	const { bossMode } = useBossMode()
 	const { lead, name } = department
 
 	/* Burning State */
@@ -38,9 +39,11 @@ export const DepartmentListItem = ({ department }: DepartmentListItemProps) => {
 				</Header4>
 			</div>
 			<Header4>{lead ? lead.firstName : ''}</Header4>
-			<FireButton onClick={handleClick} disabled={isBurning}>
-				Liquidate
-			</FireButton>
+			{bossMode ? (
+				<FireButton onClick={handleClick} disabled={isBurning}>
+					Liquidate
+				</FireButton>
+			) : null}
 		</ListItem>
 	)
 }

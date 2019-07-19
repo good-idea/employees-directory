@@ -10,8 +10,9 @@ import * as React from 'react'
 const { useState, useEffect } = React
 
 interface BossModeContextValue {
-	enabled: boolean
+	bossMode: boolean
 	disable: () => void
+	enable: () => void
 }
 
 const BossModeContext = React.createContext<BossModeContextValue | undefined>(
@@ -46,12 +47,12 @@ const tagNameRegex = /INPUT|TEXTAREA/
 /* the secret */
 const SECRET = '/sudo'
 
-const KeystrokeWatcher = ({ enabled, enable }) => {
+const KeystrokeWatcher = ({ bossMode, enable }: BossModeContextValue) => {
 	const [password, setPassword] = useState('')
 
 	useEffect(() => {
 		// @ts-ignore
-		if (enabled) return // don't watch when in boss mode
+		if (bossMode) return // don't watch when in boss mode
 
 		const handleKeyUp = (e) => {
 			/* stop watching & reset if the target is a text input */
@@ -95,7 +96,7 @@ export const BossModeProvider = ({ children }: BossModeProps) => {
 	const value = {
 		enable,
 		disable,
-		enabled,
+		bossMode: enabled,
 	}
 
 	return (

@@ -4,7 +4,7 @@ import { Employee, MutationDeleteEmployeeArgs } from 'Types'
 import { Header4 } from '../Text'
 import { ListItem, FireButton } from '../List'
 import { deleteEmployeeMutation } from 'Queries'
-import { useBossMode } from 'Providers'
+import { useBossMode } from '../../providers/BossMode'
 import { Brimstone } from '../Brimstone'
 
 interface EmployeeListItemProps {
@@ -44,9 +44,11 @@ export const EmployeeListItem = ({ employee }: EmployeeListItemProps) => {
 			<Header4 color={office && office.name ? '' : 'text.3'}>
 				{office ? office.name : 'unassigned'}
 			</Header4>
-			<FireButton onClick={handleClick} disabled={isBurning}>
-				Fire
-			</FireButton>
+			{bossMode ? (
+				<FireButton onClick={handleClick} disabled={isBurning}>
+					Fire
+				</FireButton>
+			) : null}
 		</ListItem>
 	)
 }

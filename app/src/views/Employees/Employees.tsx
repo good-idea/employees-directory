@@ -5,12 +5,14 @@ import { useQuery, useMutation } from 'urql'
 import { employeesQuery, EmployeesQueryResponse } from 'Queries'
 import { NewEmployeeForm, EmployeeListItem } from 'Components/employee'
 import { List } from 'Components/List'
+import { useBossMode } from '../../providers/BossMode'
 
 interface EmployeesProps extends RouteViewProps {
 	/* */
 }
 
 export const Employees = (props: EmployeesProps) => {
+	const { bossMode } = useBossMode()
 	const [response, refetchEmployees] = useQuery<EmployeesQueryResponse>({
 		query: employeesQuery,
 	})
@@ -28,7 +30,7 @@ export const Employees = (props: EmployeesProps) => {
 
 	return (
 		<div>
-			<NewEmployeeForm />
+			{bossMode ? <NewEmployeeForm /> : null}
 			<List title="Employees" columns={employeeColumns}>
 				{({ sort }) =>
 					sort(employees).map((e) => (

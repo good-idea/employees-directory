@@ -11,8 +11,7 @@
 			"Views/*": ["views/*"],
 			"Types/*": ["types/*"],
 			"Utils/*": ["utils/*"],
-			"Queries/*": ["queries/*"],
-			"Providers/*": [".providers/*"]
+			"Queries/*": ["queries/*"]
 		}
 	},
 	"include": ["src"]
