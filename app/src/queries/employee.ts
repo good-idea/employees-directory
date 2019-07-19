@@ -64,8 +64,8 @@ export interface EmployeesQueryResponse {
 /* Delete */
 
 export const deleteEmployeeMutation = /* GraphQL */ `
-	mutation DeleteEmployee($id: ID!) {
-		deleteEmployee(where: { id: $id }) {
+	mutation DeleteEmployee($where: EmployeeWhereUniqueInput!) {
+		deleteEmployee(where: $where) {
 			...EmployeeFragment
 		}
 	}
