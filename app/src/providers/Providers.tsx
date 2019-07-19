@@ -7,8 +7,11 @@ interface ProvidersProps {
 	children: React.ReactNode
 }
 
+console.log(process.env)
+console.log(process.env.API_URL)
+
 const client = createClient({
-	url: 'http://localhost:4000/graphql',
+	url: process.env.API_URL,
 })
 
 export const Providers = ({ children }: ProvidersProps) => {

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from '@xstyled/styled-components'
 import { Link } from '@reach/router'
-import { Placeholder } from './Placeholder'
 import { Header1, Header3 } from './Text'
 
 const Wrapper = styled.nav`

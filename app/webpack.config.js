@@ -69,13 +69,8 @@ module.exports = (env) => {
 			],
 		},
 		plugins: [
-			new CheckerPlugin(),
-			new HardSourceWebpackPlugin(),
-			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(
-					isDev ? 'development' : 'production',
-				),
-			}),
+			// new CheckerPlugin(),
+			// new HardSourceWebpackPlugin(),
 			new HtmlWebpackPlugin({
 				template: './public/index.html',
 			}),
@@ -87,6 +82,19 @@ module.exports = (env) => {
 					debug: false,
 				}),
 			!isDev && new CopyPlugin([{ from: './public/' }]),
+			new webpack.DefinePlugin({
+				'process.env.API_URL': JSON.stringify(
+					isDev
+						? 'http://localhost:4000/graphql'
+						: 'https://us1.prisma.sh/joseph-thomas-611fed/employee-directory/prod',
+				),
+				// 'process.env.API_URL': JSON.stringify(
+				// 	isDev ? 'http://localhost:4000/graphql' : 'production',
+				// ),
+				// 'process.env.NODE_ENV': JSON.stringify(
+				// 	isDev ? 'development' : 'production',
+				// ),
+			}),
 		].filter(Boolean),
 		optimization: {
 			minimize: !isDev,
