@@ -9,9 +9,14 @@ import { employeesQuery, EmployeesQueryResponse } from 'Queries'
 interface EmployeeSelectorProps {
 	name: string
 	required?: boolean
+	label?: string
 }
 
-export const EmployeeSelector = ({ name, required }: EmployeeSelectorProps) => {
+export const EmployeeSelector = ({
+	name,
+	label,
+	required,
+}: EmployeeSelectorProps) => {
 	const [queryResponse] = useQuery<EmployeesQueryResponse>({
 		query: employeesQuery,
 	})
@@ -31,7 +36,7 @@ export const EmployeeSelector = ({ name, required }: EmployeeSelectorProps) => {
 		<Selector
 			name={name}
 			required={required}
-			label="Employee"
+			label={label || 'Employee'}
 			placeholder="Select an Employee"
 			options={employeeOptions}
 		/>

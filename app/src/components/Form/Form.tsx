@@ -22,7 +22,11 @@ export function Form<FormValues>({
 	children,
 }: FormProps<FormValues>) {
 	return (
-		<Formik initialValues={initialValues} onSubmit={onSubmit}>
+		<Formik
+			initialValues={initialValues}
+			onSubmit={onSubmit}
+			enableReinitialize={true}
+		>
 			{(formProps: FormikProps<FormValues>) => {
 				return (
 					<StyledForm onSubmit={formProps.handleSubmit}>

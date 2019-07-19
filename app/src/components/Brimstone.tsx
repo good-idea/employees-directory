@@ -17,9 +17,7 @@ interface BrimstoneProps {
 }
 
 export const Brimstone = ({ flameCount }: BrimstoneProps) => {
-	console.log('brimming')
 	const flames = new Array(flameCount || 20).fill('')
-	console.log(flames)
 
 	return (
 		<Wrapper>

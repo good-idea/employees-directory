@@ -41,7 +41,7 @@ export const NewDepartmentForm = (props: NewDepartmentFormProps) => {
 	return (
 		<Form onSubmit={handleSubmit} label="Create New Department">
 			<Input name="name" label="Department Name" />
-			<EmployeeSelector name="leadId" />
+			<EmployeeSelector label="Department Lead" name="leadId" />
 		</Form>
 	)
 }

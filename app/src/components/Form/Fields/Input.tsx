@@ -23,9 +23,11 @@ export function Input<FormValues>({
 				<FieldWrapper>
 					<Label htmlFor={field.name}>{label}</Label>
 					<StyledInput
+						{...field}
 						type={type || 'text'}
 						required={required}
-						{...field}
+						value={field.value}
+						defaultValue=""
 						placeholder={placeholder}
 					/>
 				</FieldWrapper>
