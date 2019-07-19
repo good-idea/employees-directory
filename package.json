@@ -7,6 +7,9 @@
  "author": "Joseph Thomas",
  "license": "MIT",
  "private": true,
+ "scripts": {
+  "build-app": "yarn workspace employee-app build"
+ },
  "workspaces": [
   "app",
   "server"
