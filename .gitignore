@@ -1,6 +1,8 @@
 !.vscode
 
-.env
+.env.*
+!.env.example
+!.env.development
 node_modules
 yarn-error.log
 package-lock.json
