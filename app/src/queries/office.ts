@@ -56,3 +56,18 @@ export const officesQuery = /* GraphQL */ `
 export interface OfficesQueryResponse {
 	officesConnection: OfficeConnection
 }
+
+/* Update */
+
+// TODO
+
+/* Delete */
+
+export const deleteOfficeMutation = /* GraphQL */ `
+	mutation DeleteOfficeMutation($id: ID!) {
+		deleteOffice(where: { id: $id }) {
+			...OfficeFragment
+		}
+	}
+	${officeFragment}
+`

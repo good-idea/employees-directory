@@ -1,5 +1,5 @@
 import { departmentFragment } from './fragments'
-import { Department } from 'Types/generated'
+import { Department, DepartmentConnection } from 'Types/generated'
 
 /* Create */
 
@@ -56,3 +56,18 @@ export const departmentsQuery = /* GraphQL */ `
 export interface DepartmentsQueryResponse {
 	departmentsConnection: DepartmentConnection
 }
+
+/* Update */
+
+// TODO
+
+/* Delete */
+
+export const deleteDepartmentMutation = /* GraphQL */ `
+	mutation DeleteDepartment($id: ID!) {
+		deleteDepartment(where: { id: $id }) {
+			...DepartmentFragment
+		}
+	}
+	${departmentFragment}
+`

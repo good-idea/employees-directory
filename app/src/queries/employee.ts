@@ -56,3 +56,18 @@ export const employeesQuery = /* GraphQL */ `
 export interface EmployeesQueryResponse {
 	employeesConnection: EmployeeConnection
 }
+
+/* Update */
+
+// TODO
+
+/* Delete */
+
+export const deleteEmployeeMutation = /* GraphQL */ `
+	mutation DeleteEmployee($id: ID!) {
+		deleteEmployee(where: { id: $id }) {
+			...EmployeeFragment
+		}
+	}
+	${employeeFragment}
+`
