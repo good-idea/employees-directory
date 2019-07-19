@@ -7,9 +7,15 @@ import {
 	DepartmentCreateInput,
 } from 'Types'
 import { createDepartment, CreateDepartmentResponse } from 'Queries'
+import { EmployeeSelector } from 'Components/Employee'
 
 interface NewDepartmentFormProps {
 	/* */
+}
+
+interface FormValues {
+	name: string
+	leadId: string
 }
 
 export const NewDepartmentForm = (props: NewDepartmentFormProps) => {
@@ -18,16 +24,24 @@ export const NewDepartmentForm = (props: NewDepartmentFormProps) => {
 		MutationCreateDepartmentArgs
 	>(createDepartment)
 
-	const handleSubmit: FormOnSubmit<DepartmentCreateInput> = async (
-		data,
-		actions,
-	) => {
+	const handleSubmit: FormOnSubmit<FormValues> = async (values, actions) => {
+		const { leadId, ...rest } = values
+		const data = {
+			lead: {
+				connect: {
+					id: leadId,
+				},
+			},
+			...rest,
+		}
+
 		const result = await mutate({ data })
 	}
 
 	return (
 		<Form onSubmit={handleSubmit} label="Create New Department">
 			<Input name="name" label="Department Name" />
+			<EmployeeSelector name="leadId" />
 		</Form>
 	)
 }

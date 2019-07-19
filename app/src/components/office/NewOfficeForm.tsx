@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { Form, Input } from '../Form'
 import { useMutation } from 'urql'
-import {
-	FormOnSubmit,
-	MutationCreateOfficeArgs,
-	OfficeCreateInput,
-} from 'Types'
+import { FormOnSubmit, MutationCreateOfficeArgs } from 'Types'
 import { createOffice, CreateOfficeResponse } from 'Queries'
 
 interface NewOfficeFormProps {
 	/* */
+}
+
+interface FormValues {
+	name: string
+	location: string
 }
 
 export const NewOfficeForm = (props: NewOfficeFormProps) => {
@@ -18,11 +19,8 @@ export const NewOfficeForm = (props: NewOfficeFormProps) => {
 		MutationCreateOfficeArgs
 	>(createOffice)
 
-	const handleSubmit: FormOnSubmit<OfficeCreateInput> = async (
-		data,
-		actions,
-	) => {
-		const result = await mutate({ data })
+	const handleSubmit: FormOnSubmit<FormValues> = async (values, actions) => {
+		const result = await mutate({ data: values })
 	}
 
 	return (

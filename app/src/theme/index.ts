@@ -19,10 +19,10 @@ export const defaultTheme = {
 		22, // h2
 		30, // h1
 	],
-	fontWeights: [200, 400, 600, 800],
+	fontWeights: [200, 400, 500, 700, 800],
 	fonts: {
 		sans: "'Rubik', sans-serif",
-		display: "'Staatliches', cursive",
+		display: "'Staatliches', sans-serif",
 	},
 
 	/* Applies to:

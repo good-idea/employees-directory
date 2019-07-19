@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Employee } from 'Types'
 import { Header4 } from '../Text'
-import { ListItem } from '../List'
+import { ListItem, FireButton } from '../List'
 
 interface EmployeeListItemProps {
 	employee: Employee
@@ -9,7 +9,6 @@ interface EmployeeListItemProps {
 
 export const EmployeeListItem = ({ employee }: EmployeeListItemProps) => {
 	const { firstName, lastName, department, office } = employee
-	console.log(employee)
 
 	return (
 		<ListItem columnCount={3}>

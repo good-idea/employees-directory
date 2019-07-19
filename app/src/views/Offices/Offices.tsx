@@ -2,8 +2,9 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
 import { RouteViewProps } from 'Types'
-import { NewOfficeForm } from 'Components/office'
-import { officesQuery, OfficesQueryResponse } from './queries'
+import { NewOfficeForm, OfficeListItem } from 'Components/office'
+import { officesQuery, OfficesQueryResponse } from 'Queries'
+import { List } from 'Components/List'
 
 interface OfficesProps extends RouteViewProps {
 	/* */
@@ -23,14 +24,19 @@ export const Offices = (props: OfficesProps) => {
 		response.data && response.data.officesConnection
 			? unwindEdges(response.data.officesConnection)[0]
 			: []
+
+	const officeColumns = [
+		{ title: 'Name', sortByKey: 'name' },
+		{ title: 'Location', sortByKey: 'location' },
+	]
 	return (
 		<div>
-			<h1>offices</h1>
 			<NewOfficeForm />
-
-			{offices.map((o) => (
-				<p key={o.id}>{o.name}</p>
-			))}
+			<List title="Offices" columnCount={3} columns={officeColumns}>
+				{({ sort }) =>
+					sort(offices).map((o) => <OfficeListItem key={o.id} office={o} />)
+				}
+			</List>
 		</div>
 	)
 }

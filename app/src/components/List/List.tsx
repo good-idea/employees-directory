@@ -23,6 +23,9 @@ interface ListProps {
 	title: string
 	children: (props: ListRenderProps) => React.ReactNode
 	columns: ColumnInfo[]
+	/* an optional column count for the css grid.
+	 * falls back to props.columns.length */
+	columnCount?: number
 	initialSortColumn?: number
 }
 
@@ -30,6 +33,7 @@ export const List = ({
 	title,
 	children,
 	columns,
+	columnCount,
 	initialSortColumn,
 }: ListProps) => {
 	const [currentSort, setCurrentSort] = React.useState<string>(
@@ -52,7 +56,7 @@ export const List = ({
 			<ListHeader>
 				<Header3>{title}</Header3>
 			</ListHeader>
-			<ListColumnHeaders columnCount={columns.length}>
+			<ListColumnHeaders columnCount={columnCount || columns.length}>
 				{columns.map(({ sortByKey, title }, index) => (
 					<ColumnHeader key={sortByKey} active={sortByKey === currentSort}>
 						<button onClick={changeSort(sortByKey)}>{title}</button>

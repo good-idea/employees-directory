@@ -2,7 +2,7 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { RouteViewProps } from 'Types'
 import { useQuery, useMutation } from 'urql'
-import { employeesQuery, EmployeesQueryResponse } from './queries'
+import { employeesQuery, EmployeesQueryResponse } from 'Queries'
 import { NewEmployeeForm, EmployeeListItem } from 'Components/employee'
 import { List } from 'Components/List'
 
@@ -20,7 +20,6 @@ export const Employees = (props: EmployeesProps) => {
 			? unwindEdges(response.data.employeesConnection)[0]
 			: []
 
-	/* A tuple of [HeaderText, sortByKey] */
 	const employeeColumns = [
 		{ title: 'Name', sortByKey: 'lastName' },
 		{ title: 'Department', sortByKey: 'department.name' },

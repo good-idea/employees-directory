@@ -1,4 +1,5 @@
 import styled, { css } from '@xstyled/styled-components'
+import { Button } from 'Components/Button'
 
 export const ListWrapper = styled.div`
 	background-color: body.3;
@@ -57,6 +58,7 @@ interface WithColumnCount {
 
 export const ListItem = styled.li`
 	${({ columnCount }: WithColumnCount) => css`
+		position: relative;
 		display: grid;
 		grid-template-columns: repeat(${columnCount}, 1fr);
 		grid-gap: 2;
@@ -78,5 +80,21 @@ export const ListItem = styled.li`
 		& + & {
 			margin-top: -1px;
 		}
+
+		&:hover > ${FireButton} {
+			display: block;
+		}
 	`}
+`
+
+export const FireButton = styled(Button)`
+	display: none;
+	background-color: error.0;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	border-color: error.2;
+	color: white;
+	text-transform: uppercase;
 `
