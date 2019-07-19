@@ -7,7 +7,7 @@ import * as React from 'react'
  * The user must type the password outside of any text input.
  */
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
 interface BossModeContextValue {
 	bossMode: boolean
@@ -33,6 +33,29 @@ interface BossModeProps {
 }
 
 /**
+ * Provider
+ */
+
+export const BossModeProvider = ({ children }: BossModeProps) => {
+	const [enabled, setEnabled] = useState(false)
+	const disable = () => setEnabled(false)
+	const enable = () => setEnabled(true)
+
+	const value = {
+		enable,
+		disable,
+		bossMode: enabled,
+	}
+
+	return (
+		<BossModeContext.Provider value={value}>
+			<KeystrokeWatcher {...value} />
+			{children}
+		</BossModeContext.Provider>
+	)
+}
+
+/**
  * KeystrokeWatcher
  *
  * Watches the user's keystrokes and turn on boss mode when they type
@@ -49,6 +72,7 @@ const SECRET = '/sudo'
 
 const KeystrokeWatcher = ({ bossMode, enable }: BossModeContextValue) => {
 	const [password, setPassword] = useState('')
+	const audioRef = useRef(null)
 
 	useEffect(() => {
 		// @ts-ignore
@@ -71,6 +95,7 @@ const KeystrokeWatcher = ({ bossMode, enable }: BossModeContextValue) => {
 			/* turn it on if the password matches */
 			if (newPassword === SECRET) {
 				console.log('ENTER BOSS MODE')
+				if (audioRef.current) audioRef.current.play()
 				enable()
 			}
 
@@ -81,28 +106,5 @@ const KeystrokeWatcher = ({ bossMode, enable }: BossModeContextValue) => {
 		return () => document.removeEventListener('keyup', handleKeyUp)
 	}, [password])
 
-	return null
-}
-
-/**
- * Provider
- */
-
-export const BossModeProvider = ({ children }: BossModeProps) => {
-	const [enabled, setEnabled] = useState(false)
-	const disable = () => setEnabled(false)
-	const enable = () => setEnabled(true)
-
-	const value = {
-		enable,
-		disable,
-		bossMode: enabled,
-	}
-
-	return (
-		<BossModeContext.Provider value={value}>
-			<KeystrokeWatcher {...value} />
-			{children}
-		</BossModeContext.Provider>
-	)
+	return <audio ref={audioRef} src="/sm64_bowser_laugh.mp3" />
 }
