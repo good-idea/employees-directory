@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { path, sortBy } from 'ramda'
+import { path } from 'ramda'
 import { Header3 } from '../Text'
 import {
   ListWrapper,
@@ -27,6 +27,21 @@ interface ListProps {
    * falls back to props.columns.length */
   columnCount?: number
   initialSortColumn?: number
+}
+
+const sortBy = (keyByPath) => (arr: any[]) => {
+  return arr.sort((a, b) => {
+    const propA = keyByPath(a)
+    const propB = keyByPath(b)
+    // These two rules will sort `undefined` to the bottom of the list
+    if (!propA) return 0
+    if (!propB) return -1
+    // Standard A-Z sorting
+    if (propA > propB) return 1
+    if (propB < propA) return -1
+    if (propA === propB) return 0
+    return -1
+  })
 }
 
 export const List = ({
