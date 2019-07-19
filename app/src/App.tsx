@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Router } from '@reach/router'
+import { Router, Redirect } from '@reach/router'
 import { Header } from './components/Header'
 import { Main, Column } from './components/LayoutComponents'
 import { Providers } from './providers/Providers'
@@ -15,10 +15,10 @@ export const App = () => {
 			<Main>
 				<Column>
 					<Router>
-						<Home path="/" />
 						<Employees path="/employees" />
 						<Offices path="/offices" />
 						<Departments path="/departments" />
+						<Redirect from="/" to="/employees" />
 					</Router>
 				</Column>
 			</Main>

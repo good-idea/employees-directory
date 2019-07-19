@@ -49,7 +49,6 @@ export const Header = () => {
 	return (
 		<Wrapper>
 			<Header1>HappyCorp</Header1>
-			<NavLink to="/" label="Dashboard" />
 			<NavLink to="/employees" label="Employees" />
 			<NavLink to="/departments" label="Departments" />
 			<NavLink to="/offices" label="Offices" />
