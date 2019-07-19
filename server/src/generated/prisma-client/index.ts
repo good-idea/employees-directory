@@ -1336,7 +1336,6 @@ export const models: Model[] = [
  * Type Defs
  */
 
-console.log(process.env.PRISMA_ENDPOINT)
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
