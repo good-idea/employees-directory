@@ -9,19 +9,19 @@ import { Offices } from './views/Offices'
 import { Departments } from './views/Departments'
 
 export const App = () => {
-	return (
-		<Providers>
-			<Header />
-			<Main>
-				<Column>
-					<Router>
-						<Employees path="/employees" />
-						<Offices path="/offices" />
-						<Departments path="/departments" />
-						<Redirect from="/" to="/employees" />
-					</Router>
-				</Column>
-			</Main>
-		</Providers>
-	)
+  return (
+    <Providers>
+      <Header />
+      <Main>
+        <Column>
+          <Router>
+            <Employees path="/employees" />
+            <Offices path="/offices" />
+            <Departments path="/departments" />
+            <Redirect from="/" to="/employees" />
+          </Router>
+        </Column>
+      </Main>
+    </Providers>
+  )
 }

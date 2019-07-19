@@ -7,38 +7,29 @@ import { List } from '../../components/List'
 import { officesQuery, OfficesQueryResponse } from '../../queries'
 import { useBossMode } from '../../providers/BossMode'
 
-interface OfficesProps extends RouteViewProps {
-	/* */
-}
+export const Offices = (props: RouteViewProps) => {
+  const { bossMode } = useBossMode()
+  const [response, refetchOffices] = useQuery<OfficesQueryResponse>({
+    query: officesQuery,
+  })
 
-interface CreateOfficeValues {
-	title: string
-	lead: string
-}
+  const offices =
+    response.data && response.data.officesConnection
+      ? unwindEdges(response.data.officesConnection)[0]
+      : []
 
-export const Offices = (props: OfficesProps) => {
-	const { bossMode } = useBossMode()
-	const [response, refetchOffices] = useQuery<OfficesQueryResponse>({
-		query: officesQuery,
-	})
-
-	const offices =
-		response.data && response.data.officesConnection
-			? unwindEdges(response.data.officesConnection)[0]
-			: []
-
-	const officeColumns = [
-		{ title: 'Name', sortByKey: 'name' },
-		{ title: 'Location', sortByKey: 'location' },
-	]
-	return (
-		<div>
-			{bossMode ? <NewOfficeForm /> : null}
-			<List title="Offices" columnCount={3} columns={officeColumns}>
-				{({ sort }) =>
-					sort(offices).map((o) => <OfficeListItem key={o.id} office={o} />)
-				}
-			</List>
-		</div>
-	)
+  const officeColumns = [
+    { title: 'Name', sortByKey: 'name' },
+    { title: 'Location', sortByKey: 'location' },
+  ]
+  return (
+    <div>
+      {bossMode ? <NewOfficeForm /> : null}
+      <List title="Offices" columnCount={3} columns={officeColumns}>
+        {({ sort }) =>
+          sort(offices).map((o) => <OfficeListItem key={o.id} office={o} />)
+        }
+      </List>
+    </div>
+  )
 }

@@ -1,60 +1,60 @@
 import { employeeFragment } from './fragments'
-import { Employee, EmployeeConnection } from 'Types/generated'
+import { Employee, EmployeeConnection } from '../types/generated'
 
 /* Create */
 
 export const createEmployee = /* GraphQL */ `
-	mutation CreateEmployee($data: EmployeeCreateInput!) {
-		createEmployee(data: $data) {
-			...EmployeeFragment
-		}
-	}
+  mutation CreateEmployee($data: EmployeeCreateInput!) {
+    createEmployee(data: $data) {
+      ...EmployeeFragment
+    }
+  }
 
-	${employeeFragment}
+  ${employeeFragment}
 `
 
 export interface CreateEmployeeResponse {
-	createEmployee: Employee
+  createEmployee: Employee
 }
 
 /* Read */
 
 export const employeesQuery = /* GraphQL */ `
-	query EmployeesQuery(
-		$where: EmployeeWhereInput
-		$orderBy: EmployeeOrderByInput
-		$skip: Int
-		$after: String
-		$before: String
-		$first: Int
-		$last: Int
-	) {
-		employeesConnection(
-			where: $where
-			orderBy: $orderBy
-			skip: $skip
-			after: $after
-			before: $before
-			first: $first
-			last: $last
-		) {
-			pageInfo {
-				hasNextPage
-				hasPreviousPage
-			}
-			edges {
-				cursor
-				node {
-					...EmployeeFragment
-				}
-			}
-		}
-	}
-	${employeeFragment}
+  query EmployeesQuery(
+    $where: EmployeeWhereInput
+    $orderBy: EmployeeOrderByInput
+    $skip: Int
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    employeesConnection(
+      where: $where
+      orderBy: $orderBy
+      skip: $skip
+      after: $after
+      before: $before
+      first: $first
+      last: $last
+    ) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        cursor
+        node {
+          ...EmployeeFragment
+        }
+      }
+    }
+  }
+  ${employeeFragment}
 `
 
 export interface EmployeesQueryResponse {
-	employeesConnection: EmployeeConnection
+  employeesConnection: EmployeeConnection
 }
 
 /* Update */
@@ -64,10 +64,10 @@ export interface EmployeesQueryResponse {
 /* Delete */
 
 export const deleteEmployeeMutation = /* GraphQL */ `
-	mutation DeleteEmployee($where: EmployeeWhereUniqueInput!) {
-		deleteEmployee(where: $where) {
-			...EmployeeFragment
-		}
-	}
-	${employeeFragment}
+  mutation DeleteEmployee($where: EmployeeWhereUniqueInput!) {
+    deleteEmployee(where: $where) {
+      ...EmployeeFragment
+    }
+  }
+  ${employeeFragment}
 `

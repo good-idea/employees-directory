@@ -6,36 +6,36 @@ import { DepartmentConnection } from '../../types'
 import { departmentsQuery, DepartmentsQueryResponse } from '../../queries'
 
 interface DepartmentSelectorProps {
-	name: string
-	required?: boolean
+  name: string
+  required?: boolean
 }
 
 export const DepartmentSelector = ({
-	name,
-	required,
+  name,
+  required,
 }: DepartmentSelectorProps) => {
-	const [queryResponse] = useQuery<DepartmentsQueryResponse>({
-		query: departmentsQuery,
-	})
-	const { data } = queryResponse
-	const departments =
-		data && data.departmentsConnection
-			? unwindEdges(data.departmentsConnection)[0]
-			: []
+  const [queryResponse] = useQuery<DepartmentsQueryResponse>({
+    query: departmentsQuery,
+  })
+  const { data } = queryResponse
+  const departments =
+    data && data.departmentsConnection
+      ? unwindEdges(data.departmentsConnection)[0]
+      : []
 
-	/* Create options for the select menu */
-	const departmentOptions = departments.map((d) => ({
-		label: d.name,
-		value: d.id,
-	}))
+  /* Create options for the select menu */
+  const departmentOptions = departments.map((d) => ({
+    label: d.name,
+    value: d.id,
+  }))
 
-	return (
-		<Selector
-			name={name}
-			required={required}
-			label="Department"
-			placeholder="Select a Department"
-			options={departmentOptions}
-		/>
-	)
+  return (
+    <Selector
+      name={name}
+      required={required}
+      label="Department"
+      placeholder="Select a Department"
+      options={departmentOptions}
+    />
+  )
 }

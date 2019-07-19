@@ -4,22 +4,19 @@ import { Theme } from './Theme'
 import { Provider as UrqlProvider, createClient } from 'urql'
 
 interface ProvidersProps {
-	children: React.ReactNode
+  children: React.ReactNode
 }
 
-console.log(process.env)
-console.log(process.env.API_URL)
-
 const client = createClient({
-	url: process.env.API_URL,
+  url: process.env.API_URL,
 })
 
 export const Providers = ({ children }: ProvidersProps) => {
-	return (
-		<UrqlProvider value={client}>
-			<BossModeProvider>
-				<Theme>{children}</Theme>
-			</BossModeProvider>
-		</UrqlProvider>
-	)
+  return (
+    <UrqlProvider value={client}>
+      <BossModeProvider>
+        <Theme>{children}</Theme>
+      </BossModeProvider>
+    </UrqlProvider>
+  )
 }

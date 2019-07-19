@@ -6,38 +6,38 @@ import { EmployeeConnection } from '../../types'
 import { employeesQuery, EmployeesQueryResponse } from '../../queries'
 
 interface EmployeeSelectorProps {
-	name: string
-	required?: boolean
-	label?: string
+  name: string
+  required?: boolean
+  label?: string
 }
 
 export const EmployeeSelector = ({
-	name,
-	label,
-	required,
+  name,
+  label,
+  required,
 }: EmployeeSelectorProps) => {
-	const [queryResponse] = useQuery<EmployeesQueryResponse>({
-		query: employeesQuery,
-	})
-	const { data } = queryResponse
-	const employees =
-		data && data.employeesConnection
-			? unwindEdges(data.employeesConnection)[0]
-			: []
+  const [queryResponse] = useQuery<EmployeesQueryResponse>({
+    query: employeesQuery,
+  })
+  const { data } = queryResponse
+  const employees =
+    data && data.employeesConnection
+      ? unwindEdges(data.employeesConnection)[0]
+      : []
 
-	/* Create options for the select menu */
-	const employeeOptions = employees.map((e) => ({
-		label: `${e.lastName}, ${e.firstName}`,
-		value: e.id,
-	}))
+  /* Create options for the select menu */
+  const employeeOptions = employees.map((e) => ({
+    label: `${e.lastName}, ${e.firstName}`,
+    value: e.id,
+  }))
 
-	return (
-		<Selector
-			name={name}
-			required={required}
-			label={label || 'Employee'}
-			placeholder="Select an Employee"
-			options={employeeOptions}
-		/>
-	)
+  return (
+    <Selector
+      name={name}
+      required={required}
+      label={label || 'Employee'}
+      placeholder="Select an Employee"
+      options={employeeOptions}
+    />
+  )
 }

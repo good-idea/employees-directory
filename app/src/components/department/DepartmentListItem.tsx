@@ -8,42 +8,43 @@ import { Brimstone } from '../Brimstone'
 import { useBossMode } from '../../providers/BossMode'
 
 interface DepartmentListItemProps {
-	department: Department
+  department: Department
 }
 
 export const DepartmentListItem = ({ department }: DepartmentListItemProps) => {
-	const { bossMode } = useBossMode()
-	const { lead, name } = department
+  const { bossMode } = useBossMode()
+  const { lead, name } = department
 
-	/* Burning State */
-	const [isBurning, setIsBurning] = React.useState(false)
+  /* Burning State */
+  const [isBurning, setIsBurning] = React.useState(false)
 
-	/* Mutation */
-	const [result, burn] = useMutation<Department, MutationDeleteDepartmentArgs>(
-		deleteDepartmentMutation,
-	)
+  /* Mutation */
+  const [result, burn] = useMutation<Department, MutationDeleteDepartmentArgs>(
+    deleteDepartmentMutation,
+  )
 
-	const handleClick = () => {
-		setIsBurning(true)
-		setTimeout(async () => {
-			burn({ where: { id: department.id } })
-		}, 5000)
-	}
+  const handleClick = () => {
+    setIsBurning(true)
+    const submit = () => {
+      burn({ where: { id: department.id } })
+    }
+    setTimeout(submit, 5000)
+  }
 
-	return (
-		<ListItem columnCount={3} isBurning={isBurning}>
-			<div>
-				<Header4>
-					{name}
-					{isBurning ? <Brimstone /> : null}
-				</Header4>
-			</div>
-			<Header4>{lead ? lead.firstName : ''}</Header4>
-			{bossMode ? (
-				<FireButton onClick={handleClick} disabled={isBurning}>
-					Liquidate
-				</FireButton>
-			) : null}
-		</ListItem>
-	)
+  return (
+    <ListItem columnCount={3} isBurning={isBurning}>
+      <div>
+        <Header4>
+          {name}
+          {isBurning ? <Brimstone /> : null}
+        </Header4>
+      </div>
+      <Header4>{lead ? lead.firstName : ''}</Header4>
+      {bossMode ? (
+        <FireButton onClick={handleClick} disabled={isBurning}>
+          Liquidate
+        </FireButton>
+      ) : null}
+    </ListItem>
+  )
 }

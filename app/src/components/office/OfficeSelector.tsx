@@ -6,31 +6,31 @@ import { OfficeConnection } from '../../types'
 import { officesQuery, OfficesQueryResponse } from '../../queries'
 
 interface OfficeSelectorProps {
-	name: string
-	required?: boolean
+  name: string
+  required?: boolean
 }
 
 export const OfficeSelector = ({ name, required }: OfficeSelectorProps) => {
-	const [queryResponse] = useQuery<OfficesQueryResponse>({
-		query: officesQuery,
-	})
-	const { data } = queryResponse
-	const offices =
-		data && data.officesConnection ? unwindEdges(data.officesConnection)[0] : []
+  const [queryResponse] = useQuery<OfficesQueryResponse>({
+    query: officesQuery,
+  })
+  const { data } = queryResponse
+  const offices =
+    data && data.officesConnection ? unwindEdges(data.officesConnection)[0] : []
 
-	/* Create options for the select menu */
-	const officeOptions = offices.map((d) => ({
-		label: d.name,
-		value: d.id,
-	}))
+  /* Create options for the select menu */
+  const officeOptions = offices.map((d) => ({
+    label: d.name,
+    value: d.id,
+  }))
 
-	return (
-		<Selector
-			name={name}
-			required={required}
-			label="Office"
-			placeholder="Select an Office"
-			options={officeOptions}
-		/>
-	)
+  return (
+    <Selector
+      name={name}
+      required={required}
+      label="Office"
+      placeholder="Select an Office"
+      options={officeOptions}
+    />
+  )
 }

@@ -1,60 +1,60 @@
 import { departmentFragment } from './fragments'
-import { Department, DepartmentConnection } from 'Types/generated'
+import { Department, DepartmentConnection } from '../types/generated'
 
 /* Create */
 
 export const createDepartment = /* GraphQL */ `
-	mutation CreateDepartment($data: DepartmentCreateInput!) {
-		createDepartment(data: $data) {
-			...DepartmentFragment
-		}
-	}
+  mutation CreateDepartment($data: DepartmentCreateInput!) {
+    createDepartment(data: $data) {
+      ...DepartmentFragment
+    }
+  }
 
-	${departmentFragment}
+  ${departmentFragment}
 `
 
 export interface CreateDepartmentResponse {
-	createDepartment: Department
+  createDepartment: Department
 }
 
 /* Read */
 
 export const departmentsQuery = /* GraphQL */ `
-	query DepartmentsQuery(
-		$where: DepartmentWhereInput
-		$orderBy: DepartmentOrderByInput
-		$skip: Int
-		$after: String
-		$before: String
-		$first: Int
-		$last: Int
-	) {
-		departmentsConnection(
-			where: $where
-			orderBy: $orderBy
-			skip: $skip
-			after: $after
-			before: $before
-			first: $first
-			last: $last
-		) {
-			pageInfo {
-				hasNextPage
-				hasPreviousPage
-			}
-			edges {
-				cursor
-				node {
-					...DepartmentFragment
-				}
-			}
-		}
-	}
-	${departmentFragment}
+  query DepartmentsQuery(
+    $where: DepartmentWhereInput
+    $orderBy: DepartmentOrderByInput
+    $skip: Int
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    departmentsConnection(
+      where: $where
+      orderBy: $orderBy
+      skip: $skip
+      after: $after
+      before: $before
+      first: $first
+      last: $last
+    ) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        cursor
+        node {
+          ...DepartmentFragment
+        }
+      }
+    }
+  }
+  ${departmentFragment}
 `
 
 export interface DepartmentsQueryResponse {
-	departmentsConnection: DepartmentConnection
+  departmentsConnection: DepartmentConnection
 }
 
 /* Update */
@@ -64,10 +64,10 @@ export interface DepartmentsQueryResponse {
 /* Delete */
 
 export const deleteDepartmentMutation = /* GraphQL */ `
-	mutation DeleteDepartment($where: DepartmentWhereUniqueInput!) {
-		deleteDepartment(where: $where) {
-			...DepartmentFragment
-		}
-	}
-	${departmentFragment}
+  mutation DeleteDepartment($where: DepartmentWhereUniqueInput!) {
+    deleteDepartment(where: $where) {
+      ...DepartmentFragment
+    }
+  }
+  ${departmentFragment}
 `

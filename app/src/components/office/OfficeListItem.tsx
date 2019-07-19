@@ -8,42 +8,43 @@ import { Brimstone } from '../Brimstone'
 import { useBossMode } from '../../providers/BossMode'
 
 interface OfficeListItemProps {
-	office: Office
+  office: Office
 }
 
 export const OfficeListItem = ({ office }: OfficeListItemProps) => {
-	const { bossMode } = useBossMode()
-	const { name, location } = office
+  const { bossMode } = useBossMode()
+  const { name, location } = office
 
-	/* Burning State */
-	const [isBurning, setIsBurning] = React.useState(false)
+  /* Burning State */
+  const [isBurning, setIsBurning] = React.useState(false)
 
-	/* Mutation */
-	const [result, burn] = useMutation<Office, MutationDeleteOfficeArgs>(
-		deleteOfficeMutation,
-	)
+  /* Mutation */
+  const [, burn] = useMutation<Office, MutationDeleteOfficeArgs>(
+    deleteOfficeMutation,
+  )
 
-	const handleClick = () => {
-		setIsBurning(true)
-		setTimeout(async () => {
-			burn({ where: { id: office.id } })
-		}, 5000)
-	}
+  const handleClick = () => {
+    setIsBurning(true)
+    const submit = () => {
+      burn({ where: { id: office.id } })
+    }
+    setTimeout(submit, 5000)
+  }
 
-	return (
-		<ListItem columnCount={3} isBurning={isBurning}>
-			<div>
-				<Header4>
-					{name}
-					{isBurning ? <Brimstone /> : null}
-				</Header4>
-			</div>
-			<Header4>{location}</Header4>
-			{bossMode ? (
-				<FireButton onClick={handleClick} disabled={isBurning}>
-					Burn
-				</FireButton>
-			) : null}
-		</ListItem>
-	)
+  return (
+    <ListItem columnCount={3} isBurning={isBurning}>
+      <div>
+        <Header4>
+          {name}
+          {isBurning ? <Brimstone /> : null}
+        </Header4>
+      </div>
+      <Header4>{location}</Header4>
+      {bossMode ? (
+        <FireButton onClick={handleClick} disabled={isBurning}>
+          Burn
+        </FireButton>
+      ) : null}
+    </ListItem>
+  )
 }
