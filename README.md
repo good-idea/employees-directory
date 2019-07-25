@@ -27,7 +27,7 @@ For the frontend:
 
 I ended up spending a little more than 8 hours on this - probably closer to 10 or 11. I wanted to wrap up a couple features, and, of course, there were a handful of deployment / environment bugs to work out at the end. It's not as complete as I was hoping it would be, but I didn't want to go overboard on time spent. If I were to spend more time on this, my next steps would be:
 
- - Add detailed views for the Employees, Departments, and Offices. These would of course be crucial to an actual app like this - but I was more interested in setting up the "directory" pages in a modular way and adding some CRUD functionality. (Right now there's no updating, I was planning on doing that in the detail views)
+ - Add detailed views for the Employees, Departments, and Offices. These would, of course, be crucial to an actual app like this. I was more interested first in setting up the "directory" pages in a modular way and adding some CRUD functionality. So, please consider this as the first steps in a larger project instead of a "complete" app.
  - Write more tests. (Right now, only the List's sorting feature is tested)
  - Create a general-purpose component for adding entities. Right now, the 'NewThingForm' components are not very DRY. When working, I tend to write "WET" components so I can better explore the edge cases before tightening things up.
  - Add Searching & Pagination to the lists
