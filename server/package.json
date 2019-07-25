@@ -6,7 +6,7 @@
   "author": "Joseph Thomas",
   "license": "MIT",
   "scripts": {
-    "setup": "docker-compose -f ./prisma/docker-compose.yml up -d && yarn deploy:dev",
+    "setup": "docker-compose -f ./prisma/docker-compose.yml up -d && sleep 15 && yarn deploy:dev",
     "deploy": "prisma deploy --env-file .env.production",
     "deploy:dev": "prisma deploy --env-file .env.development",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
