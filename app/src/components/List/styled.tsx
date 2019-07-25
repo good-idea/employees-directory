@@ -8,6 +8,8 @@ export const ListWrapper = styled.div`
 
 export const ListHeader = styled.div`
   padding: 3;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const ListContents = styled.ul``

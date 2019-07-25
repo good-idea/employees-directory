@@ -64,7 +64,29 @@ describe('List', () => {
     const lastNameBtn = getByText('First Name')
     await fireEvent.click(lastNameBtn)
     const first = container.querySelector('li')
-
     expect(first.textContent).toBe('Alice Zipper')
+  })
+
+  it('should provide a filter function based on the search term', async () => {
+    const { container, getByLabelText, debug } = render(
+      <List title="Employees" columns={columns}>
+        {({ sort, compareBySearchTerm }) =>
+          sort(employees)
+            .filter(({ firstName, lastName }) =>
+              compareBySearchTerm(`${firstName} ${lastName}`),
+            )
+            .map(({ firstName, lastName }) => (
+              <li key={lastName}>
+                {firstName} {lastName}
+              </li>
+            ))
+        }
+      </List>,
+    )
+    const searchInput = getByLabelText('Search')
+    fireEvent.change(searchInput, { target: { value: 'mit' } })
+    const listItems = container.querySelectorAll('li')
+    expect(listItems.length).toBe(1)
+    expect(listItems[0].textContent).toBe('Bobby Mittelman')
   })
 })

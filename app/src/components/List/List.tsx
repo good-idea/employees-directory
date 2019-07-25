@@ -91,7 +91,10 @@ export const List = ({
     <ListWrapper>
       <ListHeader>
         <Header3>{title}</Header3>
-        <input placeholder="Search" onChange={handleSearchInput} />
+        <div>
+          <label htmlFor="search">Search</label>
+          <input id="search" name="search" onChange={handleSearchInput} />
+        </div>
       </ListHeader>
       <ListColumnHeaders columnCount={columnCount || columns.length}>
         {columns.map(({ sortByKey, title: columnTitle }, index) => (
