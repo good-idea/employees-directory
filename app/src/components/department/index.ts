@@ -1,3 +1,3 @@
 export * from './NewDepartmentForm'
-export * from './DepartmentListItem'
+export * from './DepartmentList'
 export * from './DepartmentSelector'

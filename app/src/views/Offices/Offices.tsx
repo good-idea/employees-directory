@@ -2,7 +2,7 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from 'urql'
 import { RouteViewProps } from '../../types'
-import { NewOfficeForm, OfficeListItem } from '../../components/office'
+import { NewOfficeForm, OfficeList } from '../../components/office'
 import { List } from '../../components/List'
 import { officesQuery, OfficesQueryResponse } from '../../queries'
 import { useBossMode } from '../../providers/BossMode'
@@ -18,18 +18,10 @@ export const Offices = (props: RouteViewProps) => {
       ? unwindEdges(response.data.officesConnection)[0]
       : []
 
-  const officeColumns = [
-    { title: 'Name', sortByKey: 'name' },
-    { title: 'Location', sortByKey: 'location' },
-  ]
   return (
     <div>
       {bossMode ? <NewOfficeForm /> : null}
-      <List title="Offices" columnCount={3} columns={officeColumns}>
-        {({ sort }) =>
-          sort(offices).map((o) => <OfficeListItem key={o.id} office={o} />)
-        }
-      </List>
+      <OfficeList offices={offices} />
     </div>
   )
 }

@@ -1,3 +1,3 @@
 export * from './NewOfficeForm'
 export * from './OfficeSelector'
-export * from './OfficeListItem'
+export * from './OfficeList'

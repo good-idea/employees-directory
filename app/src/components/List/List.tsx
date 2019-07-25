@@ -8,9 +8,11 @@ import {
   ListColumnHeaders,
   ColumnHeader,
 } from './styled'
+import { compareSearchTerm } from '../../utils'
 
 interface ListRenderProps {
   sort: <T>(array: T[]) => T[]
+  compareBySearchTerm: (val: string) => boolean
 }
 
 interface ColumnInfo {
@@ -51,25 +53,45 @@ export const List = ({
   columnCount,
   initialSortColumn,
 }: ListProps) => {
+  /**
+   * State
+   */
+
+  const [searchTerm, setSearchTerm] = React.useState('')
   const [currentSort, setCurrentSort] = React.useState<string>(
     initialSortColumn
       ? columns[initialSortColumn].sortByKey
       : columns[0].sortByKey,
   )
 
-  const sort = sortBy(path(currentSort.split('.')))
-
-  const renderProps: ListRenderProps = {
-    sort,
-  }
+  /**
+   * Handlers
+   */
 
   const changeSort = (key: string) => () => setCurrentSort(key)
 
-  // TODO: add
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearchTerm(e.target.value)
+
+  /**
+   * Render Props
+   */
+
+  const sort = sortBy(path(currentSort.split('.')))
+
+  const compareBySearchTerm =
+    searchTerm.length === 0 ? () => true : compareSearchTerm(searchTerm)
+
+  const renderProps: ListRenderProps = {
+    sort,
+    compareBySearchTerm,
+  }
+
   return (
     <ListWrapper>
       <ListHeader>
         <Header3>{title}</Header3>
+        <input placeholder="Search" onChange={handleSearchInput} />
       </ListHeader>
       <ListColumnHeaders columnCount={columnCount || columns.length}>
         {columns.map(({ sortByKey, title: columnTitle }, index) => (
