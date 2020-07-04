@@ -7,6 +7,7 @@
     "tslint-config-airbnb"
   ],
   "rules": {
+    "align": false,
     "interface-name": [true, "never-prefix"],
     "variable-name": false,
     "semicolon": [true, "never"],
